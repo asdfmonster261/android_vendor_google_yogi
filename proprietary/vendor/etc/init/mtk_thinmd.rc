@@ -1,0 +1,48 @@
+on post-fs-data
+    # FEATURE_THINMD_GOOGLE
+    # Change user/permission
+    mkdir /data/vendor/radio/thinmd 0750 radio system
+    mkdir /data/vendor/radio/thinmd/aee_exp 0750 radio system
+    restorecon_recursive /data/vendor/radio/thinmd
+
+    # Create ssrdump directory in case it does not exist
+    mkdir /data/vendor/ssrdump 0775 root system
+    mkdir /data/vendor/ssrdump/coredump 0775 root system
+    restorecon /data/vendor/ssrdump
+
+    # Create mcf directory for runtime OTA, used by MD RFSD
+    # Centralize the modem related resource by thinmd
+    mkdir /data/vendor/radio/mcf 0755 radio system
+    restorecon_recursive /data/vendor/radio/mcf
+
+# FEATURE_THINMD_GOOGLE
+# Merge from mtk_thinmd-debug.rc
+# Move to boot to avoid starting during off-mode charging
+on boot
+   setprop persist.log.tag.sap_thinmd D
+   start mtk_thinmd
+
+# FEATURE_THINMD_GOOGLE
+# Allow ssrdump module to collect TMI log
+on property:vendor.thinmd.powered_on=1
+    wait /proc/tmi_log0 1
+    chown radio system /proc/tmi_log0
+
+service mtk_thinmd /vendor/bin/mtk_thinmd
+    # FEATURE_THINMD_GOOGLE
+    # Change to main class
+    class main
+    # FEATURE_THINMD_GOOGLE
+    # Change to radio user
+    user radio
+    # FEATURE_THINMD_GOOGLE
+    # Change group
+    group system radio wakelock
+    # FEATURE_THINMD_GOOGLE
+    # Change capabilities
+    capabilities NET_ADMIN CHOWN NET_RAW BLOCK_SUSPEND
+    # FEATURE_THINMD_GOOGLE
+    # Change ioprio
+    ioprio rt 0
+    priority -20
+    disabled

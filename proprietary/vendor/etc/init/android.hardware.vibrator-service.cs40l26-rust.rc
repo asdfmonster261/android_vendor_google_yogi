@@ -1,0 +1,5 @@
+service vendor.vibrator.cs40l26 /vendor/bin/hw/android.hardware.vibrator-service.cs40l26-rust
+    class hal
+    user system
+    group system input context_hub
+    disabled

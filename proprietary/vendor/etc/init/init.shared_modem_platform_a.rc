@@ -1,0 +1,48 @@
+# init rc file for alcedo implementation of shared_modem_platform.
+
+service init.shared_modem_platform /vendor/bin/shared_modem_platform -s
+    class core
+    user radio
+    group system readproc
+
+service init.shared_modem_platform_dumpstate /vendor/bin/shared_modem_platform -e -m umi -c tea -a flush
+    user radio
+    group system
+    disabled
+    oneshot
+
+service init.shared_modem_platform_at_relay_stop /vendor/bin/shared_modem_platform test -c at_relay -a stop
+    user radio
+    group system
+    disabled
+    oneshot
+
+service init.shared_modem_platform_dumplog /vendor/bin/shared_modem_platform test -c shamp_log -a dump -p /data/vendor/radio/shamp/shamp.log
+    user radio
+    group system
+    disabled
+    oneshot
+
+on post-fs-data
+    # Remove the pid file on boot
+    rm /data/vendor/radio/shared_modem_platform_pid
+    # Create file directories for modem svc messages, sorted alphabetically
+    mkdir /data/vendor/radio/modem_temp_file 0775 radio system
+    mkdir /mnt/vendor/modem_userdata/replay 0775 radio system
+    # Create directory to save the shared_modem_platform log
+    mkdir /data/vendor/radio/shamp 0775 radio system
+
+on property:init.svc.dumpstatez=running
+    start init.shared_modem_platform_dumpstate
+    start init.shared_modem_platform_dumplog
+
+on property:init.svc.bugreportd=running
+    start init.shared_modem_platform_dumpstate
+    start init.shared_modem_platform_dumplog
+
+on property:vendor.debug.meta_daemon=1
+    start init.shared_modem_platform_at_relay_stop
+on property:vendor.debug.meta_daemon=2
+    start init.shared_modem_platform_at_relay_stop
+on property:vendor.debug.meta_daemon=3
+    start init.shared_modem_platform_at_relay_stop

@@ -1,0 +1,104 @@
+#!/system/bin/sh
+
+#
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Log messages to both logcat and the shell
+LOG_TAG=epic_postinstall_runner
+
+log_info() {
+    log -p i -t "${LOG_TAG}" "$1"
+    echo "$1" >&2
+}
+
+log_error() {
+    log -p e -t "${LOG_TAG}" "$1"
+    echo "$1" >&2
+}
+
+# Updates tried property is always set during init if init_citadel or
+# init_citadel_postinstall is present.
+#
+# If getprop returns empty that means we can't access it as the property is
+# either missing or permission is denied. This can happen if:
+#  1. Device is in recovery mode. GSC related packages are not installed in
+#     recovery mode, so we cannot perform the postinstall.
+#  2. Postinstall does not have permissions to read postinstall state. This is
+#     the case for some earlier builds which had a different, non-treble
+#     compliant GSC postinstall process
+#
+# Poll for a bit in case postinstall runs immediately after init and initial
+# setprop needs to propogate
+check_properties_access() {
+    output=""
+    timeout=5 # Stop trying after about 5 seconds
+    end_time=$((SECONDS + timeout))
+
+    log_info "Checking for required property access"
+
+    while [[ -z "$output" ]]; do
+        if [[ $SECONDS -ge $end_time ]]; then
+            log_info "No access to citadel postinstall state. Exiting early"
+            exit 1
+        fi
+
+        output="$(getprop vendor.nos.citadel.updates_tried)"
+
+        if [[ -z "$output" ]]; then
+            sleep 1
+        fi
+    done
+}
+
+# Exits early if we cannot access properties needed for script.
+check_properties_access
+
+# Wait any preivous instances of init_citadel and init_citadel_postinstall to
+# finish.
+log_info "Waiting for previous init_citadel runs to finish...."
+while true; do
+    if [[ "$(getprop init.svc.vendor.init_citadel)" == "stopped" ]]; then
+        break
+    fi
+    sleep 1
+done
+
+# We also check against the empty string here, if this is the first time we're
+# invoking citadel postinstall this getprop call will return empty.
+while true; do
+    postinstall_state="$(getprop init.svc.vendor.init_citadel_postinstall)"
+    if [[ ${postinstall_state} == "stopped" || -z ${postinstall_state} ]]; then
+        break
+    fi
+    sleep 1
+done
+
+# Get the current update try count
+updates_tried="$(getprop vendor.nos.citadel.updates_tried)"
+
+# Kickoff postinstall for citadel fw update
+setprop ctl.start vendor.init_citadel_postinstall
+
+# Poll until the service is done (update try count changes). There is no timeout
+# because it's called by the postinstall service and it's up to it to manage
+# that.
+while true; do
+    if [[ "$(getprop vendor.nos.citadel.updates_tried)" != ${updates_tried} ]]; then
+        log_info "Epic postinstall finished"
+        exit 0
+    fi
+    sleep 1
+done

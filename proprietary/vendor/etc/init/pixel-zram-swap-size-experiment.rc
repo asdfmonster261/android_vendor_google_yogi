@@ -1,0 +1,17 @@
+# zram swap size experiment - try different zram swap size
+# (the device type for experiment is configured from the mendel server)
+
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.pixel.system.phenotype.Perf__zram_swap_size_experiment=*
+    setprop persist.vendor.zram_swap_size ${vendor.pixel.system.phenotype.Perf__zram_swap_size_experiment}
+
+on property:vendor.pixel.system.phenotype.Perf__zram_swap_size_experiment=default
+    setprop persist.vendor.zram_swap_size ""
+
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.pixel.system.phenotype.Perf__zram_writeback_size_experiment=*
+    setprop persist.vendor.zram_writeback_size ${vendor.pixel.system.phenotype.Perf__zram_writeback_size_experiment}
+
+on property:vendor.pixel.system.phenotype.Perf__zram_writeback_size_experiment=default
+    setprop persist.vendor.zram_writeback_size ""
+

@@ -1,0 +1,16 @@
+on post-fs-data
+    # FEATURE_SAP_LOG_GOOGLE
+    # Change user/group/permission
+    mkdir /data/vendor/radio/sap_log 0755 radio system
+    mkdir /data/vendor/radio/sap_log/syslog 0755 radio system
+    mkdir /data/vendor/radio/sap_log/bootlog 0755 radio system
+    restorecon /data/vendor/radio/sap_log
+
+service sap_log /vendor/bin/sap_log
+    class main
+    # FEATURE_SAP_LOG_GOOGLE
+    # Change to radio user
+    user radio
+    # FEATURE_SAP_LOG_GOOGLE
+    # Change group
+    group system radio inet

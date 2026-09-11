@@ -1,0 +1,2 @@
+on property:persist.vendor.dpa.default-on=1
+    write /sys/devices/platform/5400000.dpa/state "start"

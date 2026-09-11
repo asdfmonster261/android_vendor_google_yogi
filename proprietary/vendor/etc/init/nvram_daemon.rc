@@ -1,0 +1,26 @@
+on post-fs-data
+    # FEATURE_NVRAM_DAEMON_GOOGLE
+    mkdir /data/vendor/radio/nvram_daemon 0755 radio system
+    restorecon_recursive /data/vendor/radio/nvram_daemon
+
+on property:vendor.modem.nvram_daemon.trigger=*
+   start nvram_daemon
+
+service nvram_daemon /vendor/bin/nvram_daemon
+    # FEATURE_NVRAM_DAEMON_GOOGLE
+    # Change to main class
+    class main
+    # FEATURE_NVRAM_DAEMON_GOOGLE
+    # Change to radio user
+    user radio
+    # FEATURE_NVRAM_DAEMON_GOOGLE
+    # Change group
+    group system radio
+    # FEATURE_THINMD_GOOGLE
+    # Raise priority
+    ioprio rt 0
+    priority -20
+    # FEATURE_THINMD_GOOGLE
+    # Change run condition
+    disabled
+    oneshot

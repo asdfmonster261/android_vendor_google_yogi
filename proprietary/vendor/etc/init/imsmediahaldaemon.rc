@@ -1,0 +1,12 @@
+service imsmediahal-daemon /vendor/bin/hw/imsmediahaldaemon
+    class main
+    user radio
+    group radio cache inet misc audio log readproc wakelock
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    seclabel u:r:imsmediahaldaemon:s0
+
+on property:vendor.ril.mtk.restart=1
+    restart imsmediahal-daemon
+
+on property:vold.decrypt=trigger_restart_framework
+    restart imsmediahal-daemon

@@ -1,0 +1,146 @@
+#
+# Yogi sensor device configuration registry script for the EVT 1.0 stage.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-mbu
+#
+
+?+0x73100:0xFFFFFFF0  # EVT 1.0
+
+#
+# Record reg_script.
+#
+
++/
+reg_script=yogi_evt_1_0.reg
+
+#
+# Sensors
+#
+
+# Color Lights Driver
++/dev/aw21024/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x34
+  # Max current setting: I_max = 10.17mA * gcc_reg / 255.
+  gcc_reg=75
+  en_gpio_id=123
+  # Set PWM frequency - 0:32KHz or 1:64KHz
+  clkfrq_reg=0x1
+  # Mapping from logical LED_ID to physical order on the ring.
+  led_map=5 8 7 6 1 2 3 4
+  # Tweak sRGB->PWM processing to force PWM values to zero when their sRGB counterpart is.
+  null-means-null=1
+  # Golden calibration values.
+  xyz_to_pwm_0=9 0.726044 -0.197673 -0.083138 -0.146914 0.328632 -0.028385 0.004494 -0.010099 0.109531
+  xyz_to_pwm_1=17 0.283597 -0.075666 -0.032856 -0.060596 0.135555 -0.011673 0.002119 -0.004956 0.052899
+  xyz_to_pwm_2=51 0.067028 -0.017780 -0.007804 -0.015615 0.035004 -0.002718 0.000859 -0.001773 0.015904
+  # Auto-Brightness control
+  abc_enable=1
+  # Lux-to-Nits map.
+  # Format: <num-of-pairs> <lux0> <nits0> <lux1> <nit1> ..
+  abc_map_lux2nits=11 10 150 50 250 100 400 200 720 500 1500 1000 4200 1500 5760 2500 7440 5000 10560 10000 14000 50000 33600
+  # Hysteresis window. Lux values have to go above (brightening) or below (darkening) the
+  # thresholds for a brightness change to happen.
+  # brightening_lux_thresh = MAX(last_lux + brighten_lux_val, lux * (1.0 + brighten_lux_pct))
+  #   abc_hyst_brighten_lux_val, abc_hyst_brighten_lux_pct
+  # darkening_lux_thresh = MIN(last_lux - darken_lux_val, last_lux * (1.0 - darken_lux_pct))
+  #   abc_hyst_darken_lux_val, abc_hyst_darken_lux_pct
+  # Debounce time before changing brightness.
+  abc_debounce_brighten_ms=1000
+  abc_debounce_darken_ms=1000
+  # Brightness changing ramp configuration.
+  #   abc_ramp_brighten_rate_nits_per_sec, abc_ramp_brighten_max_time_sec
+  #   abc_ramp_darken_rate_nits_per_sec, abc_ramp_darken_max_time_sec
+
+# ALSP
++/dev/tmd3743/0/als
+  # DBV table and dependent parameters for each frequency in pwm_hz table.
+  #   Each parameter is appended with an index, equal to the index of the
+  #   PWM frequency it corresponds to, in the pwm_hz table.
+  itime_table_brightness_0=1500 2918 16384
+  itime_table_0=1600000 1200000 300000
+  max_gain_table_0=7 7 7
+  prox_delay_1hz_0=20000 20000 20000
+  prox_delay_10hz_0=20000 20000 20000
+  prox_delay_30hz_0=20000 20000 20000
+  prox_delay_60hz_0=20000 20000 20000
+  prox_delay_120hz_0=20000 20000 20000
+  itime_table_brightness_1=1500 2918 16384
+  itime_table_1=1600000 1200000 300000
+  max_gain_table_1=7 7 7
+  prox_delay_1hz_1=20000 20000 20000
+  prox_delay_10hz_1=20000 20000 20000
+  prox_delay_30hz_1=20000 20000 20000
+  prox_delay_60hz_1=20000 20000 20000
+  prox_delay_120hz_1=20000 20000 20000
+
++/dev/tmd3743/0/prox
+  pulse_count=2
+  pulse_len_us=64
+  gain1=64
+
++/dev/tcs3743/0/als
+  itime_table_0=1600000 1000000 300000
+  itime_table_brightness_0=305 644 4096
+  max_gain_table_0=7 7 7
+  itime_table_1=1600000 1000000 300000
+  itime_table_brightness_1=305 644 4096
+  max_gain_table_1=7 7 7
+
+# MAG 0 (BMM350)
++/dev/bmm350/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x15
+  orientation_transform=1 2 3
+  sensor_instance=1
++/dev/bmm350/0/mag
+  name=BMM350 Magnetometer
+  fac_cal_transform=1.0015 -0.055836 -0.023623 -0.040629 0.93 -0.046702 -0.036208 -0.1419 1.1436 0.0 0.0 0.0
++/dev/bmm350/0/temp
+  name=BMM350 Temperature
+
+# MAG 1 (MMC5616WA)
++/dev/mmc5616/0
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=6250000
+  bus_addr=0x30
+  i3c_addr=0x14
+  sensor_instance=2
+  orientation_transform=-2 1 3
++/dev/mmc5616/0/mag
+  name=MMC5616 Magnetometer 0
+  fac_cal_transform=0.9373 -0.0042 -0.0023 0.0092 1.0412 0.0172 0.0721 -0.0107 1.0747 0.0 0.0 0.0
+
+# MAG 2 (MMC5616WA)
++/dev/mmc5616/1
+  bus_name=i3c4
+  bus_freq_hz=400000
+  i3c_freq_hz=6250000
+  bus_addr=0x30
+  i3c_addr=0x14
+  sensor_instance=3
+  orientation_transform=2 1 -3
++/dev/mmc5616/1/mag
+  name=MMC5616 Magnetometer 1
+
+# BARO 1 (SPL07003).
++/dev/spxyz00n/1
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x76
++/dev/spxyz00n/1/baro
+  name=SPL07003 Barometer
++/dev/spxyz00n/1/temp
+  name=SPL07003 Temperature
+
++/dev/vd628x/0/rls
+  lux_scale=108.1642

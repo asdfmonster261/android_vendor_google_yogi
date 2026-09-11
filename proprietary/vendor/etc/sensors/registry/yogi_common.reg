@@ -1,0 +1,628 @@
+#
+# Yogi sensor device configuration registry script.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-mbu
+#
+
+?+0x70000:0xFFFF0000
+
+&MandatorySensorList
+# Accel
+1:0
+1:1
+# Gyro
+2:0
+2:1
+# Prox
+3:0
+3:1
+# Baro
+4:0
+# Baro Temp
+5:0
+# Mag
+6:0
+6:1
+# IMU Temp
+8:0
+8:1
+# ALS
+9:0
+9:1
+9:2
+# Color
+10:0
+10:1
+10:2
+# Camera V-Sync
+11:0
+11:1
+11:2
+11:3
+11:4
+# Binned Brightness
+14:0
+14:1
+# Window orientation
+16:0
+# Lift to wake
+17:0
+# Double Twist
+18:0
+# Game Rotation Vector
+# TODO(b/486224221): re-enable motion fusion once performance is unblocked
+# 20:0
+# Geomagnetic Rotation Vector
+# TODO(b/486224221): re-enable motion fusion once performance is unblocked
+# 21:0
+# Gravity
+# TODO(b/486224221): re-enable motion fusion once performance is unblocked
+# 22:0
+# Linear Acceleration
+# TODO(b/486224221): re-enable motion fusion once performance is unblocked
+# 23:0
+# Orientation
+# TODO(b/486224221): re-enable motion fusion once performance is unblocked
+# 24:0
+# Proximity Gated Touch Single Tap
+25:0
+# Rotation Vector
+# TODO(b/486224221): re-enable motion fusion once performance is unblocked
+# 27:0
+# Significant motion
+28:0
+# Step algos
+29:0
+30:0
+# Tilt
+31:0
+# Touch Single Tap Sensor
+34:0
+# Counter
+35:0
+35:1
+# Hall Effect
+45:0
+45:1
+# Rear Light
+46:0
+# Auto-brightness
+48:0
+48:1
+# Hinge-angle
+53:0
+
+# DVFS service
++/power/sc/dvfs
+  mips_max_vote=800
+  mips_min_vote=30
+
++/power/a32/dvfs
+  mips_max_vote=384
+  mips_min_vote=0
+
+# ALSP (TMD3743)
++/dev/tmd3743/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x39
+  intr_id=132
+  display_id=1
+  anti_aliasing=1
+  interlacing=1
+  is_te2_node_enabled=1
+  is_changable_pwm_supported=1
+  # Leakage model type to use to calculate display leakage.
+  #  0 : Compensate Lux using weighted Luma.
+  #  1 : Compensate Lux using legacy plus modified C-channel histogram.
+  #  2 : Compensate calculated XYZ values.
+  #  3 : Compensate CRGBW channels.
+  leakage_model_type=3
+  priority=1
+
++/dev/tmd3743/0/prox
+  priority=1
+  gain2=1
+  prox_delay_min_mode_us=26000
+  pdata_scale=3.76998
+  far_threshold=900
+  near_threshold=1500
+  pdata_baseline=4439
+  auto_baseline=1
+  temp_coeff=0
+
++/dev/tmd3743/0/als
+  priority=2
+  x_scale=1.02011
+  lux_scale=1.06083
+  z_scale=1.10454
+  x_crgbw_coefs=28.129194 -15.866833 58.052840 -61.919155 -0.299866
+  lux_crgbw_coefs=22.176624 -18.114089 71.049790 -44.437884 -0.222585
+  z_crgbw_coefs=55.088845 -74.953601 -28.785503 96.787072 1.888879
+  # Display PWM table and dependent parameters.
+  pwm_hz=240 480
+  vsync_delay_us=4354 4351
+  vsync_delay_2_us=4778
+
+  # Lux Filter parameters
+  fast_filter_size=10
+  slow_filter_size=100
+  aod_fast_filter_size=3
+  aod_slow_filter_size=3
+
+  # Throttle output rate to 60 Hz.
+  sample_throttle_period_us=16000
+
+  # Histogram Configuration.
+  histo_enable=1
+  # Display coordinates go from top left to bottom right.
+  histo_roi_left=660
+  histo_roi_top=100
+  histo_roi_right=775
+  histo_roi_bottom=225
+  # The maximum brightness (DBV) value up to which histogram is active.
+  # This value should match one of the itime_table_brightness values.
+  histo_max_brightness=16384
+  # Minimum change needed for a leakage value to be reported, i.e.,
+  # min_change = MAX(min_change_value, current_leakage_val * min_change_rate)
+  histo_min_change_value=0.5
+  histo_min_change_rate=0.01
+  # Histogram polling interval in ms.
+  histo_polling_interval=50
+  # Fallback luma value to use when histogram returns error (e.g., due to DRM).
+  histo_fallback_luma=128.0
+
+  ## Leakage calculator configuration.
+
+  # Histo Luma matrix coefficients.
+  # Format: histo_luma_matrix_<pwm_hz>_<n> = <start_DBV> <end_DBV> <<co-effs of luma-term matrix>>
+  #         where: pwm_hz = PWM frequency; n = Luma matrix count.
+  # The luma-term matrix applies for the given pwm_hz, when "start_DBV <= current_DBV <= end_DBV".
+  histo_luma_matrix_240_0=0 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  histo_luma_matrix_240_1=1001 2918 0.46060098 0.31516745 0.22423157 0.45128745 0.34238286 0.20632969 0.29361359 0.49811475 0.20827166 -4.30747067 0.14866636 5.15880431 0.41937824 0.41152683 0.16909494
+  histo_luma_matrix_240_2=2919 16384 0.41326402 0.4779782 0.10875778 0.58890549 0.35055084 0.06054367 0.08546265 0.8083959 0.10614145 0.0698555 0.53507414 0.39507036 0.46905648 0.42656985 0.10437366
+  histo_luma_matrix_480_0=0 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  histo_luma_matrix_480_1=1001 2918 0.38570168 0.48939505 0.12490328 0.65741176 0.30011737 0.04247087 0.08043832 0.86625148 0.0533102 0.1115493 0.48993061 0.39852009 0.42115657 0.46943616 0.10940727
+  histo_luma_matrix_480_2=2919 16384 0.45908574 0.49157165 0.04934261 0.616911 0.32345589 0.0596331 0.16426004 0.74164859 0.09409138 0.20698833 0.42552438 0.3674873 0.50426712 0.40563954 0.09009334
+
+  # Histo Luma exponent table.
+  # Format: histo_luma_exp = <DBV1 exponent1> <DBV2 exponent2> ... <DBV_n exponent_n>
+  #         where: DBV1 < DBV2 < ... < DBV_n.
+  # For current_DBV, "exponent_x" value from first pair satisfying "current_DBV <= DBV_x" is chosen.
+  histo_luma_exp=16384 1.5
+
+  # Histo DBV equations.
+  # Format: histo_dbv_eq_<pwm_hz>_<channel_index>_<n> = <start_DBV> <end_DBV> <eq_type>
+  #                                                     <<equation co-efficients>>
+  #         where: pwm_hz = PWM freq; channel_index = Leakage channel index enumerated as CRGBW;
+  #                n = DBV equation count.
+  # The DBV-term equation applies for the given pwm_hz, for the given leakage channel,
+  # when "start_DBV <= current_DBV <= end_DBV".
+  histo_dbv_eq_240_0_0=345 1000 0 0
+  histo_dbv_eq_240_0_1=1001 2918 0 -7.0844388577574335 0.026284899908736708 -3.656337311452192e-05 2.4093272130466394e-08 -7.558384765803789e-12 9.082062224773221e-16
+  histo_dbv_eq_240_0_2=2919 16384 0 -1.1569179696234146 0.000926836328692618 -2.3972410546353083e-07 3.053136883622081e-11 -1.8273877036832574e-15 4.259616805303573e-20
+
+  histo_dbv_eq_240_1_0=345 1000 0 0
+  histo_dbv_eq_240_1_1=1001 2918 0 -6.796030400719178 0.025262772842247535 -3.516150381016327e-05 2.3195398686262727e-08 -7.287469396855566e-12 8.771266188586459e-16
+  histo_dbv_eq_240_1_2=2919 16384 0 -1.5580403380399344 0.0012485175510264254 -3.359379145389199e-07 4.378491847213131e-11 -2.6769856485028885e-15 6.320451021924617e-20
+
+  histo_dbv_eq_240_2_0=345 1000 0 0
+  histo_dbv_eq_240_2_1=1001 2918 0 -7.5345775431114825 0.027801771947968065 -3.8535409192531424e-05 2.5330493906873043e-08 -7.931981266841853e-12 9.516985524840517e-16
+  histo_dbv_eq_240_2_2=2919 16384 0 -1.2758744664173616 0.0010697483903934649 -2.864620998047236e-07 3.7014927268436475e-11 -2.231460814618458e-15 5.1934673437835437e-20
+
+  histo_dbv_eq_240_3_0=345 1000 0 0
+  histo_dbv_eq_240_3_1=1001 2918 0 -7.4666771622766515 0.027900259732013925 -3.916147184430699e-05 2.600686165516537e-08 -8.211102210309709e-12 9.915323020521417e-16
+  histo_dbv_eq_240_3_2=2919 16384 0 -1.4186545520012355 0.0011033669516560996 -2.8517935068094746e-07 3.61626190066691e-11 -2.171165204031191e-15 5.098301490610889e-20
+
+  histo_dbv_eq_240_4_0=345 1000 0 0
+  histo_dbv_eq_240_4_1=1001 2918 0 -7.030147035676939 0.026011351658300565 -3.608506391185601e-05 2.373339924430289e-08 -7.436138891034195e-12 8.928121329962637e-16
+  histo_dbv_eq_240_4_2=2919 16384 0 -1.0007067736198347 0.000791981548160565 -2.037766035503717e-07 2.585023346934107e-11 -1.5264114239695812e-15 3.5135739200149404e-20
+
+  histo_dbv_eq_480_0_0=345 1000 0 0
+  histo_dbv_eq_480_0_1=1001 2918 0 -2.453405284004056 0.009318658943592845 -1.3024804292031832e-05 8.875463727106102e-09 -2.9522760657760175e-12 3.818890401293909e-16
+  histo_dbv_eq_480_0_2=2919 16384 0 -1.0933555012626057 0.0008779040584798792 -2.3135790383435828e-07 3.000572855272822e-11 -1.8175460173921245e-15 4.267442872276338e-20
+
+  histo_dbv_eq_480_1_0=345 1000 0 0
+  histo_dbv_eq_480_1_1=1001 2918 0 -2.4266084516999125 0.009161120359655984 -1.2698461153055393e-05 8.6173309413783e-09 -2.865037445653078e-12 3.7123886446808e-16
+  histo_dbv_eq_480_1_2=2919 16384 0 -0.8602893590932184 0.0007102580530813018 -1.8750472385603562e-07 2.4565503755995502e-11 -1.4918269546619216e-15 3.514003790200292e-20
+
+  histo_dbv_eq_480_2_0=345 1000 0 0
+  histo_dbv_eq_480_2_1=1001 2918 0 -2.5189802475873986 0.009546737616169526 -1.3205470293299736e-05 8.922871943943717e-09 -2.9550304869660416e-12 3.819177797669381e-16
+  histo_dbv_eq_480_2_2=2919 16384 0 -1.1354423992877074 0.0008875970468089553 -2.249034222435468e-07 2.7870070747621546e-11 -1.6038119129580757e-15 3.5752612361815885e-20
+
+  histo_dbv_eq_480_3_0=345 1000 0 0
+  histo_dbv_eq_480_3_1=1001 2918 0 -3.530503925903503 0.012766143743531758 -1.7267132596588795e-05 1.1379308524627729e-08 -3.666799758785944e-12 4.612611397620798e-16
+  histo_dbv_eq_480_3_2=2919 16384 0 -0.5538679778488595 0.00039119745158932266 -8.066312473562442e-08 9.078757835711353e-12 -4.765930901941586e-16 1.034697882178163e-20
+
+  histo_dbv_eq_480_4_0=345 1000 0 0
+  histo_dbv_eq_480_4_1=1001 2918 0 -2.5361536797683195 0.009572233581367806 -1.3270972459551914e-05 8.975619042479165e-09 -2.967240863231036e-12 3.8204339588832766e-16
+  histo_dbv_eq_480_4_2=2919 16384 0 -0.6762499127191018 0.0005598527701329533 -1.462615049480402e-07 1.9054542802950883e-11 -1.1326455471988283e-15 2.6101841223873175e-20
+
+  # Golden value for fac-cal leakages.
+  crgbw_leakage_at_dbv=240 389.90231 240.61538 118.44231 61.84615 363.51923 2918 240 93.04839 63.30645 30.16129 13.90323 106.80645 12908 480 319.01923 193.80769 95.46154 50.92000 289.21000 2918 480 106.49194 73.04140 34.52097 15.87204 123.84355 12908
+
+  # Alternate Lux equation parameters.
+  # Format:
+  #   per_chan_lux_coefs = <C_coef> <R_coef> <G_coef> <B_coef> <W_coef>
+  #   c_g_ratio_modified_lux = r1 r2 r3 r4
+  #      defined as:
+  #      (C/G < r1) || (r4 < C/G)            =>  W-based  eq.
+  #      (r1 < C/G < r2) || (r3 < C/G < r4)  =>  Weighted average between W-based and default eq.
+  #      r2 < C/G < r3                       =>  Default eq.
+  #
+  # Disabled for now.
+  # per_chan_lux_coefs=30 90 90 90 30
+  # c_g_ratio_modified_lux=2.4 2.8 4.8 5.2
+
++/dev/tmd3743/0/color
+  priority=2
+  freeze_cct_on_inaccurate_leakage=1
+
++/dev/tmd3743/0/spectral
+  priority=1
+
+# ALSP (TCS3743)
++/dev/tcs3743/0
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=12500000
+  bus_addr=0x39
+  i3c_addr=0x39
+  intr_id=135
+  display_id=0
+  anti_aliasing=1
+  is_changable_pwm_supported=1
+  # Leakage model type to use to calculate display leakage.
+  #  0 : Compensate Lux using weighted Luma.
+  #  1 : Compensate Lux using legacy plus modified C-channel histogram.
+  #  2 : Compensate calculated XYZ values.
+  #  3 : Compensate CRGBW channels.
+  leakage_model_type=3
+  priority=0
+
++/dev/tcs3743/0/als
+  priority=1
+  x_scale=0.98429
+  lux_scale=1.02923
+  z_scale=1.05841
+  x_crgbw_coefs=-2.786922 5.521570 244.816600 -125.766832 -2.102212
+  lux_crgbw_coefs=-1.796284 -8.445297 257.944726 -112.268346 -1.543587
+  z_crgbw_coefs=90.292812 -141.666800 17.824605 138.862121 4.124572
+  pwm_hz=240 480
+  vsync_delay_us=2901 2898
+  vsync_delay_2_us=2035
+
+  # Lux Filter parameters
+  fast_filter_size=10
+  slow_filter_size=100
+  aod_fast_filter_size=3
+  aod_slow_filter_size=3
+
+  # Alternate Lux equation parameters.
+  # Format:
+  #   per_chan_lux_coefs = <C_coef> <R_coef> <G_coef> <B_coef> <W_coef>
+  #   c_g_ratio_modified_lux = r1 r2 r3 r4
+  #      defined as:
+  #      (C/G < r1) || (r4 < C/G)            =>  W-based  eq.
+  #      (r1 < C/G < r2) || (r3 < C/G < r4)  =>  Weighted average between W-based and default eq.
+  #      r2 < C/G < r3                       =>  Default eq.
+  #
+  # Disabled for now.
+  # per_chan_lux_coefs=30 90 90 90 30
+  # c_g_ratio_modified_lux=2.4 2.8 4.8 5.2
+
++/dev/tcs3743/0/color
+  priority=1
+  freeze_cct_on_inaccurate_leakage=1
+
++/dev/tcs3743/0/spectral
+  priority=2
+
+# Display Info 0.
++/dev/display_info/0
+  # Link to ALS attached to this display.
+  attached_alsp=/dev/tcs3743/0
+
+# Display Info 1.
++/dev/display_info/1
+  # Link to ALS attached to this display.
+  attached_alsp=/dev/tmd3743/0
+
+# IMU 0 (ICM45631)
++/dev/icm456xy/0
+  bus_name=i3c4
+  bus_freq_hz=400000
+  i3c_freq_hz=12000000
+  bus_addr=0x68
+  i3c_addr=0xa
+  intr_id=133
+  trigger_type=3
+  priority=0
+  who_am_i=0xe8
+  spi_slew_rate_regval=5
+  md_threshold=60
+  md_duration_samples=1
+  sd_threshold=60
+  sd_timeout_ms=5000
+  sd_batching_latency_ms=1000
+  lowG_peak_threshold=848
+  lowG_detect_timeout_ms=20
+  lowG_debounce_timeout_ms=1000
+  orientation_transform=2 -1 3
++/dev/icm456xy/0/accel
+  name=ICM45631 Accelerometer
++/dev/icm456xy/0/gyro
+  name=ICM45631 Gyroscope
++/dev/icm456xy/0/temp
+  name=ICM45631 Temperature
++/dev/icm456xy/0/motion_detect
+  name=ICM45631 Motion Detect
++/dev/icm456xy/0/stationary_detect
+  name=ICM45631 Stationary Detect
++/dev/icm456xy/0/freefall_detect
+  name=ICM45631 FreeFall Detect
+
+# IMU 1 (ICM45621)
++/dev/icm456xy/1
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=12000000
+  bus_addr=0x69
+  i3c_addr=0xa
+  intr_id=134
+  trigger_type=3
+  priority=1
+  who_am_i=0x09
+  md_threshold=200
+  md_duration=1
+  sd_threshold=200
+  sd_timeout_ms=5000
+  sd_batching_latency_ms=1000
+  lowG_peak_threshold=2048
+  lowG_detect_timeout_ms=20
+  lowG_debounce_timeout_ms=1000
+  orientation_transform=1 -2 -3
++/dev/icm456xy/1/accel
+  name=ICM45621 Accelerometer
++/dev/icm456xy/1/gyro
+  name=ICM45621 Gyroscope
++/dev/icm456xy/1/temp
+  name=ICM45621 Temperature
++/dev/icm456xy/1/motion_detect
+  name=ICM45621 Motion Detect
++/dev/icm456xy/1/stationary_detect
+  name=ICM45621 Stationary Detect
++/dev/icm456xy/1/freefall_detect
+  name=ICM45621 FreeFall Detect
+
+# Golden calibration for IMU0 and IMU1.
++/golden_cal/dev/icm45631/0/accel
+  avg_odr_25=25
+  fac_cal_transform=0.99737 0.00549 0.00109 -0.00403 0.99782 -0.00502 -0.00237 0.00305 0.99784 0.00047 -0.00018 0.10319
+  temp=29.73264
+  temp_sensitivity=-0.00063 -0.00038 0.00239
+
++/golden_cal/dev/icm45631/0/gyro
+  avg_odr_25=25
+  fac_cal_transform=1.00383 0.00511 0.00225 -0.00446 1.00164 -0.00347 -0.00271 0.00345 0.99660 0.00097 -0.00213 -0.00038
+  temp=29.73264
+  temp_sensitivity=-0.00000 -0.00001 0.00006
+
++/golden_cal/dev/icm45621/0/accel
+  avg_odr_25=25
+  fac_cal_transform=0.99696 0.00283 -0.01110 -0.00138 0.99731 0.00134 0.01097 -0.00083 0.99803 -0.01541 0.02307 -0.03084
+  temp=26.65418
+  temp_sensitivity=-0.00004 0.00142 -0.00134
+
++/golden_cal/dev/icm45621/0/gyro
+  avg_odr_25=25
+  fac_cal_transform=1.00177 0.00304 -0.00936 -0.00393 1.00281 0.00147 0.00920 -0.00159 0.99896 0.00160 0.00082 0.00023
+  temp=26.65418
+  temp_sensitivity=0.00005 0.00002 -0.00002
+
+# BARO (SPA18001)
++/dev/spxyz00n/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x77
+  intr_id=136
++/dev/spxyz00n/0/baro
+  name=SPA18001 Barometer
++/dev/spxyz00n/0/temp
+  name=SPA18001 Temperature
+
+# Golden Calibration for Barometer.
++/golden_cal/dev/spa18001/0/baro
+  fac_cal_transform=1.0 -0.28484
+  temp=28.35833
+  temp_sensitivity=-0.00066
+
+# Hall Effect 0 (DRV5032)
++/dev/hall_effect/0
+  gpio_id=147
+  intr_id=131
+  name=DRV5032 Hall Effect Sensor 0
+
+# Hall Effect 1 (DRV5032)
++/dev/hall_effect/1
+  gpio_id=146
+  intr_id=130
+  name=DRV5032 Hall Effect Sensor 1
+
+# SX932X Sar
++/dev/sx932x/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x28
+  intr_id=137
+
+  # SX932X registers' field. All of these set with decimal value
+  # GnrlCtrl0(0x10), [4:0], SCANPERIOD   #(HEX)0x16 = (Binary)10110    => 100 ms.
+  scan_period=22
+  # ProxCtrl6(0x36), [7:0], PROXTHRESH01 #(HEX)0x1F = (Binary)00011111 => (31^2)/2 = 480.5
+  prox_threshold01=31
+  # ProxCtrl7(0x37), [7:0], PROXTHRESH23 #(HEX)0x1b = (Binary)00100111 => (27^2)/2 = 364.5
+  prox_threshold23=27
+
+  # AfeCtrl3(0x23),  [1:0], ARANGE01     #(HEX)0x01 = (Binary)1        => Large (+/-2.65pF).
+  analog_range01=1
+  # AfeCtrl4(0x24),  [2:0], RESOLUTION01 #(HEX)0x05 = (Binary)101      => 256.
+  resolution01=5
+  # ProxCtrl0(0x30), [2:0], RAWFILT01    #(HEX)0x05 = (Binary)101      => 1-1/32.
+  raw_filt01=5
+
+  # Hall sensor ID used for phone case detection of on sx932x.
+  case_hall_sensor_id=1
+  # AdvCtrl16(0x50), [3:2], STEADYWINDOW   #(HEX)0x00 = (Binary)0    => 4 samples.
+  steady_window=0
+  # AdvCtrl17(0x51), [7:4], STEADYMAXVAR01 #(HEX)0x08 = (Binary)1000 => 128.
+  steady_max_var01=8
+  # AdvCtrl17(0x51), [3:0], STEADYMAXVAR23 #(HEX)0x08 = (Binary)1000 => 128.
+  steady_max_var23=8
++/dev/sx932x/0/ph1
+  name=SX932X SAR Sensor 0
+  priority=0
++/dev/sx932x/0/ph2
+  name=SX932X SAR Sensor 1
+  priority=1
+
+# Camera V-Sync
++/dev/camera_vsync/0 # RUWCAM2AP_VSYNC
+  intr_id=122
+  intr_trigger_type=2
++/dev/camera_vsync/1 # RCAM2AP_VSYNC
+  intr_id=123
+  intr_trigger_type=2
++/dev/camera_vsync/2 # FCAM0_2_AP_VSYNC
+  intr_id=124
+  intr_trigger_type=2
++/dev/camera_vsync/3 # FCAM1_2_AP_VSYNC
+  intr_id=126
+  intr_trigger_type=2
++/dev/camera_vsync/4 # RTCAM2AP_VSYNC
+  intr_id=127
+  intr_trigger_type=2
+
+# RAINBOW (VD6283TG)
++/dev/vd628x/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x20
+  pdm_id=4
+  pcm_rate_hz=16000
+  pdm_24b_samples=0
+
++/dev/vd628x/0/spectral
+  auto_gain=1
+  priority=0
+  # Outgoing sample values follow the same order as HW.
+  passthrough_channel_order=1
+  # On-change thresholds for each color channel c: min_delta[c] ratio[c].
+  # A value of -1 disables a threshold.
+  # Change events are determined as follows:
+  #  last_count[c]: the last sample count for each channel c
+  #  count[c]: the current sample count for each channel c
+  #   => delta[c] = abs(last_count[c] - count[c])
+  #  thresh[c] = max(min_delta[c], last_count[c] * ratio[c])
+  #  if delta[c] > thresh[c] for any channel c:
+  #    Send a new sample with all current channel counts
+  r_change_thresh=-1 -1
+  g_change_thresh=100 0.1
+  b_change_thresh=-1 -1
+  c1_change_thresh=100 0.1
+  c2_change_thresh=-1 -1
+  ir_change_thresh=-1 -1
+
++/dev/vd628x/0/rls
+  fix_fac_cal=1
+
++/dev/vd628x/0/flicker
+  auto_gain=1
+  # Flicker capture modes:
+  #  0: Normal (on-chip flicker processing, PDM converting to PCM).
+  #  1: Direct1 (on-chip direct passthrough, PDM bypass, driver PCM converting).
+  #  2: Direct2 (on-chip direct passthrough, PDM converting to PCM)
+  flicker_mode=2
+  # The PDM clock in kHz
+  pdm_clock_khz=3200
+  # Upshift the sample to compensate for the -6dB stage in the PDM interface.
+  sample_upshift=1
+
++/dev/auto_brightness/0
+  dual_als=1
+
+# TOUCH
++/dev/fst2/0
+  bus_name=spi1
+  bus_freq_hz=10000000
+  spi_mode=0
+  spi_word_size=8
+  manual_cs_mode=1
+  cs_clock_delay_us=1
+  intr_id=142
+  intr_type=2
+
+# OUTER TOUCH
++/dev/s6e3ft0/1
+  bus_name=spi3
+  bus_freq_hz=1000000
+  spi_mode=0
+  spi_word_size=8
+  manual_cs_mode=1
+  cs_clock_delay_us=10
+  spi_delay_between_write_read_us=40
+  intr_id=141
+  intr_type=2
+
++/touch/prox_gated_sensor
+  single_tap_instance=1
+
+# TBN
++/tbn
+  tbn_mode=2
+  device_count=2
+
+# Binned Brightness 0
++/dev/binned_brightness/0
+  # ALS sensor to use as input. This is matched to the ALS priority value.
+  als_instance=1
+  panel_id=0
+
+# Binned Brightness 1
++/dev/binned_brightness/1
+  # ALS sensor to use as input. This is matched to the ALS priority value.
+  als_instance=2
+  panel_id=1
+
+# Double Twist
++/dev/double_twist/0
+  prox_instance=1
+
+# Virtual ALSP
++/dev/virtual_alsp/0
+  hall_instance=0
+  inner_panel_id=0
+
++/dev/virtual_alsp/0/als
+  panel0_sensor_instance=1
+  panel1_sensor_instance=2
+
++/dev/virtual_alsp/0/prox
+  panel1_sensor_instance=1
+
++/dev/virtual_alsp/0/color
+  panel0_sensor_instance=1
+  panel1_sensor_instance=2
+
+# Fusion Magnetometer Configuration
++/dev/fusion_mag/0/mag
+  2nd_flip_avg=-16.30 3.60 -2.30 6.50 3.40 0.10
+  weight_mixing_matrix=50.0
+  weight_residual=5.0 1.0
+  threshold=1.2

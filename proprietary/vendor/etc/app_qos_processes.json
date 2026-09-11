@@ -1,0 +1,29 @@
+{
+  "com.miHoYo.GenshinImpact": {
+      "profile": "POWER_SAVE",
+      "power_budget_split": {
+        "CPU": 50,
+        "GPU": 50
+      },
+      "thread_qos": [
+        { "UnityMain": "QOS_USER_INITIATED" },
+        { "UnityGfxDeviceW": "QOS_USER_INITIATED" },
+        { "UnityMultiRende": "QOS_USER_INITIATED" },
+        { "UnityChoreograp": "QOS_USER_INITIATED" },
+        { "NativeThread": "QOS_USER_INITIATED" },
+        { "Worker Thread*": "QOS_USER_INITIATED" }
+      ]
+  },
+  "com.HoYoverse.hkrpgoversea": {
+      "profile": "POWER_SAVE",
+      "power_budget_split": {
+        "CPU": 50,
+        "GPU": 50
+      },
+      "thread_qos": [
+        { "UnityMain": "QOS_USER_INITIATED" },
+        { "UnityGfxDeviceW": "QOS_USER_INITIATED" },
+        { "Job.Worker *": "QOS_USER_INITIATED" }
+      ]
+  }
+}

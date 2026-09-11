@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <allowed-vendor-apex package="com.google.pixel.audio.resource"
+    installerPackage="com.google.android.apps.pixel.tabby" />
+</config>

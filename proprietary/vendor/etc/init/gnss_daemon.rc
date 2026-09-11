@@ -1,0 +1,13 @@
+on post-fs-data
+    mkdir /data/vendor/gps 0775 gps gps
+    mkdir /data/vendor/gps/logs 0775 gps gps
+    mkdir /data/vendor/gps/logs/hardware 0775 gps gps
+    mkdir /data/vendor/gps/logs/sensor 0775 gps gps
+    mkdir /data/vendor/gps/logs/ionex 0775 gps gps
+    mkdir /data/vendor/gps/overlay 0775 gps gps
+    mkdir /data/vendor/gps/resource 0775 gps gps
+
+service gnss_daemon /vendor/bin/hw/gnss_daemon
+    class main
+    user gps
+    group gps system wakelock inet net_raw radio sdcard_rw

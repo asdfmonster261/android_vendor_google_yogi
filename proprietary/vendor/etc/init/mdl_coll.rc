@@ -1,0 +1,20 @@
+on post-fs-data
+    # FEATURE_MDL_COLL_GOOGLE
+    # Change to radio user
+    mkdir /data/vendor/radio/mdl_coll 0755 radio system
+    restorecon_recursive /data/vendor/radio/mdl_coll
+
+service mdl_coll /vendor/bin/mdl_coll
+    class main
+    # FEATURE_MDL_COLL_GOOGLE
+    # Change to radio user
+    user radio
+    # FEATURE_MDL_COLL_GOOGLE
+    # Change group
+    group system radio inet
+    # FEATURE_MDL_COLL_GOOGLE
+    # Add capabilities
+    capabilities NET_ADMIN
+
+on property:vendor.mdl_coll.mtk.restart=1
+    restart mdl_coll

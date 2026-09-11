@@ -1,0 +1,111 @@
+on post-fs-data
+    # Wait for insmod_sh to finish all common modules
+    wait_for_prop vendor.common.modules.ready 1
+
+    # Create symlinks to sysfs nodes
+    symlink /sys/bus/pci/devices/0000:01:00.0/fsm_state /dev/wwan_fsm_state
+    symlink /sys/bus/pci/devices/0000:01:00.0/mtk_device_ctrl /dev/wwan_device_ctrl
+
+on post-fs-data && property:ro.debuggable=1
+    # Wait for insmod_sh to finish all common modules
+    wait_for_prop vendor.common.modules.ready 1
+
+    # Enable kernel panic for PCIe link exceptions
+    write /sys/module/radio_google/parameters/panic_on_cold_resume 1
+
+################################################################################
+# Modem Runtime PM Control
+################################################################################
+
+# ------------------------------------------------------------------------------
+# Initialization
+# Runs early to set defaults before persist properties are loaded.
+# ------------------------------------------------------------------------------
+on init
+    setprop ro.vendor.modem.rpm.mode.default 2
+    setprop vendor.modem.rpm.mode.override.active 0
+    setprop vendor.modem.rpm.mode ${ro.vendor.modem.rpm.mode.default}
+    setprop ro.vendor.modem.rpm.delay_ms.default 3000
+    setprop vendor.modem.rpm.delay_ms.override.active 0
+    setprop vendor.modem.rpm.delay_ms ${ro.vendor.modem.rpm.delay_ms.default}
+
+# ------------------------------------------------------------------------------
+# RPM Mode Resolution
+# Precedence: Override > QMS > Default
+# ------------------------------------------------------------------------------
+
+# --- QMS Mode (Only if override not active) ---
+on property:persist.vendor.modem.qms.pcie_runtimeL2_pm_control=0 && property:vendor.modem.rpm.mode.override.active=0
+    setprop vendor.modem.rpm.mode 2
+
+on property:persist.vendor.modem.qms.pcie_runtimeL2_pm_control=1 && property:vendor.modem.rpm.mode.override.active=0
+    setprop vendor.modem.rpm.mode 1
+
+# --- Override Mode ---
+on property:persist.vendor.modem.rpm.mode.override=0
+    setprop vendor.modem.rpm.mode.override.active 1
+    setprop vendor.modem.rpm.mode 0
+
+on property:persist.vendor.modem.rpm.mode.override=1
+    setprop vendor.modem.rpm.mode.override.active 1
+    setprop vendor.modem.rpm.mode 1
+
+on property:persist.vendor.modem.rpm.mode.override=2
+    setprop vendor.modem.rpm.mode.override.active 1
+    setprop vendor.modem.rpm.mode 2
+
+# --- Revert Override ---
+on property:persist.vendor.modem.rpm.mode.override=none
+    setprop vendor.modem.rpm.mode.override.active 0
+    setprop vendor.modem.rpm.mode ${ro.vendor.modem.rpm.mode.default}
+
+# ------------------------------------------------------------------------------
+# RPM Delay Resolution
+# Precedence: Override > Mode-based Default
+# ------------------------------------------------------------------------------
+
+# --- QMS Delay (Only if override not active) ---
+on property:persist.vendor.modem.qms.pcie_runtimeL2_pm_timeout_ms=* && property:vendor.modem.rpm.delay_ms.override.active=0
+    setprop vendor.modem.rpm.delay_ms ${persist.vendor.modem.qms.pcie_runtimeL2_pm_timeout_ms}
+
+# --- Override Delay ---
+# Note: Setting to "none" will also match "*" momentarily, which is harmless.
+on property:persist.vendor.modem.rpm.delay_ms.override=*
+    setprop vendor.modem.rpm.delay_ms.override.active 1
+    setprop vendor.modem.rpm.delay_ms ${persist.vendor.modem.rpm.delay_ms.override}
+
+# --- Revert Override ---
+on property:persist.vendor.modem.rpm.delay_ms.override=none
+    setprop vendor.modem.rpm.delay_ms.override.active 0
+    setprop vendor.modem.rpm.delay_ms ${ro.vendor.modem.rpm.delay_ms.default}
+
+# ------------------------------------------------------------------------------
+# Driver Control Mechanisms
+# Actually writes the resolved values to sysfs.
+# ------------------------------------------------------------------------------
+
+# --- Mode Control ---
+# Mode 0: RPM disabled
+on property:vendor.modem.rpm.mode=0 && property:vendor.thinmd.powered_on=1
+    write /sys/bus/pci/devices/0000\:01\:00.0/power/control "on"
+
+# Mode 1: RPM fully enabled
+on property:vendor.modem.rpm.mode=1 && property:vendor.thinmd.powered_on=1
+    write /sys/bus/pci/devices/0000\:01\:00.0/power/control "auto"
+
+# Mode 2: RPM enabled for airplane mode
+on property:vendor.modem.rpm.mode=2 && property:vendor.thinmd.powered_on=1
+    write /sys/bus/pci/devices/0000\:01\:00.0/power/control "on"
+
+on property:vendor.modem.rpm.mode=2 && property:vendor.mtk.wwan.vote.airplane=0 && property:vendor.mtk.wwan.vote.gnss=0
+    write /sys/bus/pci/devices/0000\:01\:00.0/power/control "auto"
+
+on property:vendor.modem.rpm.mode=2 && property:vendor.mtk.wwan.vote.airplane=1
+    write /sys/bus/pci/devices/0000\:01\:00.0/power/control "on"
+
+on property:vendor.modem.rpm.mode=2 && property:vendor.mtk.wwan.vote.gnss=1
+    write /sys/bus/pci/devices/0000\:01\:00.0/power/control "on"
+
+# --- Delay Control ---
+on property:vendor.modem.rpm.delay_ms=* && property:vendor.common.modules.ready=1
+    write /sys/module/mtk_pcie/parameters/runtime_idle_delay_ms ${vendor.modem.rpm.delay_ms}

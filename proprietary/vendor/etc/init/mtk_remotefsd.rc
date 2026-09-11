@@ -1,0 +1,37 @@
+on post-fs-data
+    # FEATURE_SAP_RFS_GOOGLE
+    # Change user/permission
+    # Create the folders which are the root folders of eAP file
+    # paths used in mtk_remotefsd
+    mkdir /data/vendor/radio/sap_config 0750 radio system
+    restorecon_recursive /data/vendor/radio/sap_config
+
+    mkdir /data/vendor/gps 0770 gps system
+    mkdir /data/vendor/gps/logs 0770 gps system
+    restorecon_recursive /data/vendor/gps
+
+    mkdir /data/vendor/radio/netlog 0750 radio system
+    restorecon_recursive /data/vendor/radio/netlog
+
+    mkdir /data/vendor/radio/met 0750 radio system
+    restorecon_recursive /data/vendor/radio/met
+
+    mkdir /data/vendor/radio/sap_cldma 0750 radio system
+    restorecon_recursive /data/vendor/radio/sap_cldma
+
+service mtk_remotefsd /vendor/bin/mtk_remotefsd
+    # FEATURE_SAP_RFS_GOOGLE
+    # Change to main clasee
+    class main
+    # FEATURE_SAP_RFS_GOOGLE
+    # Change to radio user
+    user radio
+    # FEATURE_SAP_RFS_GOOGLE
+    # Change group
+    group system radio gps wakelock
+    # FEATURE_SAP_RFS_GOOGLE
+    # Add capabilities
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    # FEATURE_SAP_RFS_GOOGLE
+    # Change ioprio
+    ioprio rt 0

@@ -1,0 +1,44 @@
+{
+   "QOS_USER_INTERACTIVE": {
+    "nice": -4,
+    "rampup_multiplier": 4,
+    "uclamp_max": 1024,
+    "policy": "SCHED_NORMAL",
+    "latency_sensitive": true
+  },
+   "QOS_USER_INITIATED": {
+    "nice": -2,
+    "rampup_multiplier": 1,
+    "uclamp_max": 768,
+    "policy": "SCHED_NORMAL",
+    "latency_sensitive": true
+  },
+   "QOS_UTILITY": {
+    "nice": 2,
+    "rampup_multiplier": 0,
+    "uclamp_max": 512,
+    "policy": "SCHED_BATCH",
+    "latency_sensitive": false
+  },
+   "QOS_BACKGROUND": {
+    "nice": 4,
+    "rampup_multiplier": 0,
+    "uclamp_max": 256,
+    "policy": "SCHED_BATCH",
+    "latency_sensitive": false
+  },
+   "QOS_EXTRA_BURSTY": {
+    "nice": -4,
+    "rampup_multiplier": 8,
+    "uclamp_max": 1024,
+    "policy": "SCHED_NORMAL",
+    "latency_sensitive": true
+  },
+   "QOS_DEFAULT": {
+    "nice": 2,
+    "rampup_multiplier": 0,
+    "uclamp_max": 512,
+    "policy": "SCHED_BATCH",
+    "latency_sensitive": false
+  }
+}

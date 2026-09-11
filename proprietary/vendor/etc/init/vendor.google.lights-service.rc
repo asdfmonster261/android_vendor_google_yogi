@@ -1,0 +1,8 @@
+service vendor.google.lights  /vendor/bin/hw/vendor.google.lights-service
+    interface aidl android.hardware.light.ILights/default
+    class hal
+    user system
+    group system
+    # shutting off lights while powering-off
+    shutdown critical
+

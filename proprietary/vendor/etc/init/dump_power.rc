@@ -1,0 +1,105 @@
+on init
+    # Dump maxfg
+    chown system system /sys/class/power_supply/maxfg_base/model_state
+    chown system system /sys/class/power_supply/max77779fg/model_state
+    chown system system /sys/class/power_supply/maxfg_base/model_version
+    chown system system /sys/class/power_supply/max77779fg/model_version
+
+    # Dump eeprom
+    chown system system /sys/devices/platform/ebf1000.spmi/spmi-0/0-02/i2c-24/24-0050/eeprom
+
+    chown system system /dev/battery_history
+    chmod 0644 /dev/battery_history
+
+    # Charge stats (write 0)
+    chown system system /sys/class/power_supply/battery/charge_stats
+
+    # Pca Charge stats (write 0)
+    chown system system /sys/class/power_supply/ln8411-mains/device/chg_stats
+    chown system system /sys/class/power_supply/pe26100-cp-mains/device/chg_stats
+
+    # Thermal Charge stats (write 0)
+    chown system system /sys/devices/platform/google,charger/thermal_stats
+
+    # Google Charger stats (write 0)
+    chown system system /sys/devices/platform/google,charger/charge_stats
+
+    # Adaptive charge
+    chown system system /sys/class/power_supply/battery/charge_deadline
+
+    # Charging policy
+    chown system system /sys/class/power_supply/battery/charging_policy
+
+    # BatteryHealthData
+    chown system system /sys/class/power_supply/battery/first_usage_date
+
+    # Battery Defender
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/bd_trickle_cnt
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/bd_trickle_dry_run
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/bd_trickle_enable
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/bd_trickle_recharge_soc
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/bd_trickle_reset_sec
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/bd_clear
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/health_safety_margin
+    chown system system /sys/devices/platform/google,battery/power_supply/battery/swelling_data
+    chown system system /sys/devices/platform/google,charger/bd_drainto_soc
+    chown system system /sys/devices/platform/google,charger/bd_recharge_soc
+    chown system system /sys/devices/platform/google,charger/bd_recharge_voltage
+    chown system system /sys/devices/platform/google,charger/bd_resume_abs_temp
+    chown system system /sys/devices/platform/google,charger/bd_resume_soc
+    chown system system /sys/devices/platform/google,charger/bd_resume_temp
+    chown system system /sys/devices/platform/google,charger/bd_resume_time
+    chown system system /sys/devices/platform/google,charger/bd_temp_dry_run
+    chown system system /sys/devices/platform/google,charger/bd_temp_enable
+    chown system system /sys/devices/platform/google,charger/bd_trigger_temp
+    chown system system /sys/devices/platform/google,charger/bd_trigger_time
+    chown system system /sys/devices/platform/google,charger/bd_trigger_voltage
+    chown system system /sys/devices/platform/google,charger/bd_clear
+    chown system system /sys/devices/platform/google,charger/charge_start_level
+    chown system system /sys/devices/platform/google,charger/charge_stop_level
+    chown system system /sys/devices/platform/google,cpm/dc_ctl
+    # Important to include dd_state as it's used in battery defender in charger mode
+    chown system system /sys/devices/platform/google,charger/dd_state
+    chown system system /sys/devices/platform/google,charger/dd_settings
+
+    # Permission for USB controller power
+    chown system system /sys/devices/platform/simple_usb_bus/a200000.usb3/power/control
+
+on early-boot
+    # Wait for insmod_sh to finish all common modules
+    wait_for_prop vendor.common.modules.ready 1
+
+    # logbuffer
+    chown system system /dev/logbuffer_max77779fg
+    chown system system /dev/logbuffer_max77779fg_monitor
+    chown system system /dev/logbuffer_maxfg_base
+    chown system system /dev/logbuffer_maxfg_secondary
+    chown system system /dev/logbuffer_maxfg_base_monitor
+    chown system system /dev/logbuffer_maxfg_secondary_monitor
+    chown system system /dev/logbuffer_dual_batt
+    chown system system /dev/logbuffer_ssoc
+    chown system system /dev/logbuffer_ttf
+    chown system system /dev/logbuffer_wireless
+    chown system system /dev/logbuffer_cpm
+    chown system system /dev/logbuffer_dc_mains
+    chown system system /dev/logbuffer_ln8411
+    chown system system /dev/logbuffer_pe26100_cp_mains
+    chown system system /dev/logbuffer_wlc_fw_update
+
+service set_fg_model_prop /vendor/bin/set_fg_model
+    class main
+    user system
+    group system
+    disabled
+    oneshot
+    seclabel u:r:hal_health_default:s0
+
+on property:sys.boot_completed=1
+    # gvotables for dumpstate
+    chown system system /sys/kernel/debug/gvotables
+
+    # write serialno to battery path for pairing
+    write /sys/class/power_supply/battery/dev_sn ${ro.boot.serialno}
+
+    # expose battery FG model version
+    start set_fg_model_prop

@@ -1,0 +1,7 @@
+on post-fs-data
+    mkdir /data/vendor/gps/logs/fw 0775 gps gps
+
+service gnss_fw_log /vendor/bin/hw/gnss_fw_log
+    class main
+    user gps
+    group log system shell radio sdcard_rw inet sdcard_r media_rw

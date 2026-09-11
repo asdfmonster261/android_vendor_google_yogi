@@ -1,0 +1,241 @@
+{
+	"pipelines": [
+		{
+			"name": "default",
+			"device": "/dev/touch_offload",
+			"uclamp_min": 68,
+			"algorithms": [
+				{
+					"class": "DataRequestAlgorithm",
+					"name": "datarequest",
+					"parameters": {
+						"enable_self_strength": true,
+						"enable_vendor_data": true
+					}
+				},
+				{
+					"class": "SegmentationAlgorithm",
+					"name": "segmentation",
+					"blocked_by": ["datarequest"]
+				},
+				{
+					"class": "WaterAlgorithm",
+					"name": "water",
+					"parameters": {
+						"min_score": 0.5,
+						"max_distance2": 25,
+						"max_duration": 42,
+						"model_path": "/vendor/etc/water-clf-inner.tflite",
+					},
+					"blocked_by": ["segmentation"]
+				},
+				{
+					"class": "TouchflowAlgorithm",
+					"name": "touchflow",
+					"parameters": {
+						"config": "/vendor/etc/touchflow_inner.pb"
+					},
+					"blocked_by": ["water"]
+				},
+				{
+					"class": "CoordstateAlgorithm",
+					"name": "coordstate",
+					"blocked_by": ["touchflow"]
+				},
+				{
+					"class": "PeakTrackerAlgorithm",
+					"name": "peak_tracker",
+					"blocked_by": ["coordstate"]
+				},
+				{
+					"class": "GripSuppressionAlgorithm",
+					"name": "grip_suppression",
+					"blocked_by": ["peak_tracker"],
+					"parameters": {
+						"enableDebugLog": true
+					}
+				},
+				{
+					"class": "AbnormalDetectionAlgorithm",
+					"name": "abnormal_detect",
+					"blocked_by": ["grip_suppression"],
+					"parameters": {
+						"enable_debug": true,
+						"min_aspect_ratio": 0.25,
+						"suppress_single_cell_blobs": false,
+						"suppress_line_blobs": false,
+						"large_blob_area": 20,
+						"min_abnormal_line_length": 4,
+						"max_stationary_blob_delta": 1.0,
+						"max_suppression_duration_ms": 20,
+						"max_area_delta": 0.05
+					}
+				},
+				{
+					"class": "ReportingAlgorithm",
+					"name": "reporting",
+					"blocked_by": ["abnormal_detect"]
+				},
+				{
+					"class": "GestureAlgorithm",
+					"name": "gesture",
+					"blocked_by": ["reporting"],
+					"parameters": {
+						"min_gesture_pool_size": 5,
+						"double_tap_window_ns": 300000000,
+						"long_press_window_ns": 500000000,
+						"max_tap_displacement_mm": 5.0,
+						"max_scroll_speed_mm_s": 100.0,
+						"back_gesture_tolerance_px": 1000,
+						"max_zoom_angle_diff_deg": 10.0
+					}
+				},
+				{
+					"class": "TouchSuezAlgorithm",
+					"name": "touchsuez",
+					"blocked_by": ["gesture"],
+					"parameters": {
+						"latency_logger_threshold_ms": 4.1
+					}
+				}
+			]
+		},
+		{
+			"name": "outer",
+			"device": "/dev/touch_offload_outer",
+			"uclamp_min": 68,
+			"algorithms": [
+				{
+					"class": "DataRequestAlgorithm",
+					"name": "datarequest",
+					"parameters": {
+						"enable_self_strength": true,
+						"enable_vendor_data": true
+					}
+				},
+				{
+					"class": "SegmentationAlgorithm",
+					"name": "segmentation",
+					"blocked_by": ["datarequest"]
+				},
+				{
+					"class": "WaterAlgorithm",
+					"name": "water",
+					"parameters": {
+						"min_score": 0.95,
+						"model_path": "/vendor/etc/water-clf-outer.tflite",
+					},
+					"blocked_by": ["segmentation"]
+				},
+				{
+					"class": "TouchflowAlgorithm",
+					"name": "touchflow",
+					"parameters": {
+						"config": "/vendor/etc/touchflow_outer.pb"
+					},
+					"blocked_by": ["water"]
+				},
+				{
+					"class": "CoordstateAlgorithm",
+					"name": "coordstate",
+					"blocked_by": ["touchflow"]
+				},
+				{
+					"class": "PeakTrackerAlgorithm",
+					"name": "peak_tracker",
+					"blocked_by": ["coordstate"]
+				},
+				{
+					"class": "GripSuppressionAlgorithm",
+					"name": "grip_suppression",
+					"blocked_by": ["peak_tracker"],
+					"parameters": {
+						"enableDebugLog": true
+					}
+				},
+				{
+					"class": "EarCheekDetectionAlgorithm",
+					"name": "earcheek",
+					"parameters": {
+						"prob_threshold_lo": 0.5,
+						"prob_threshold_hi": 0.8,
+						"min_frames_under_lower_th": 10,
+						"min_frames_over_upper_th": 10
+					},
+					"blocked_by": ["grip_suppression"]
+				},
+				{
+					"class": "AbnormalDetectionAlgorithm",
+					"name": "abnormal_detect",
+					"blocked_by": ["earcheek"],
+					"parameters": {
+						"enable_debug": true,
+						"min_aspect_ratio": 0.25,
+						"suppress_single_cell_blobs": false,
+						"suppress_line_blobs": false,
+						"large_blob_area": 20,
+						"min_abnormal_line_length": 4,
+						"max_stationary_blob_delta": 1.0,
+						"max_suppression_duration_ms": 20,
+						"max_area_delta": 0.05
+					}
+				},
+				{
+					"class": "ReportingAlgorithm",
+					"name": "reporting",
+					"blocked_by": ["abnormal_detect"]
+				},
+				{
+					"class": "HardwareStateDetector",
+					"name": "gril_antenna_tuning",
+					"blocked_by": ["reporting"],
+					"parameters": {
+						"enableGril": true,
+						"enableGrilDebugLog": false,
+						"minNumFramesCaseDetection": 20000,
+						"scalingFactorSignalStrength": 1.54,
+						"debounceDelayCaseAbsentToPresentMs": 0
+					}
+				},
+				{
+					"class": "DistonomyAlgorithm",
+					"name": "distonomy",
+					"blocked_by": ["gril_antenna_tuning"],
+					"parameters": {
+						"enable": true
+					}
+				},
+				{
+					"class": "SensorFusionAlgorithm",
+					"name": "sensorfusion",
+					"blocked_by": ["distonomy"],
+					"parameters": {
+						"WALLABY_AUTO_SUBSCRIBE": true
+					}
+				},
+				{
+					"class": "GestureAlgorithm",
+					"name": "gesture",
+					"blocked_by": ["sensorfusion"],
+					"parameters": {
+						"min_gesture_pool_size": 5,
+						"double_tap_window_ns": 300000000,
+						"long_press_window_ns": 500000000,
+						"max_tap_displacement_mm": 5.0,
+						"max_scroll_speed_mm_s": 100.0,
+						"back_gesture_tolerance_px": 1000,
+						"max_zoom_angle_diff_deg": 10.0
+					}
+				},
+				{
+					"class": "TouchSuezAlgorithm",
+					"name": "touchsuez",
+					"blocked_by": ["gesture"],
+					"parameters": {
+						"latency_logger_threshold_ms": 4.1
+					}
+				}
+			]
+		}
+	]
+}

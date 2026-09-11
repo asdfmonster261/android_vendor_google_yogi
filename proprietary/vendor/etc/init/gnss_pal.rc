@@ -1,0 +1,8 @@
+service gnss_pal /vendor/bin/hw/gnss_pal
+    class hal
+    user gps
+    group system gps
+    disabled
+
+on boot && property:persist.vendor.gps.hal.interface=*
+    start gnss_pal

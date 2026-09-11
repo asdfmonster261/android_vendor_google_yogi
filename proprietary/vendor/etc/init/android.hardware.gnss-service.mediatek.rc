@@ -1,0 +1,6 @@
+service vendor.gnss-default /vendor/bin/hw/android.hardware.gnss-service.mediatek
+    class hal
+    user gps
+    capabilities WAKE_ALARM
+    group system gps
+

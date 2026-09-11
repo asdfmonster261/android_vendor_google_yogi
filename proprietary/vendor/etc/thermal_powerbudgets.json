@@ -1,0 +1,24 @@
+{
+    "DefaultBudgets": {
+        "cpu": 75,
+        "gpu": 25
+    },
+    "Games": [
+        {
+            "PackageName": "com.HoYoverse.hkrpgoversea",
+            "Comment": "Honkai star rail",
+            "PowerBudgetPercentages": {
+                "cpu": 50,
+                "gpu": 50
+            }
+        },
+        {
+            "PackageName": "com.miHoYo.GenshinImpact",
+            "Comment": "Genshin Impact",
+            "PowerBudgetPercentages": {
+                "cpu": 75,
+                "gpu": 25
+            }
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+on post-fs-data
+    chmod 777 /dev/sscd_gps
+    mkdir /data/vendor/gps/logs/gnsslogger 0775 gps gps
+
+service gnss_manager /vendor/bin/hw/gnss_manager
+    class hal
+    user gps
+    group system gps log radio

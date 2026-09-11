@@ -1,0 +1,37 @@
+#!/system/bin/sh
+
+#
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Script wraps two separate postinstall hooks:
+#  1. checkpoint_gc to reduce mount time for next boot
+#  2. Citadel Postinstall which kicks off Vendor service for GSC update
+
+# Run checkpointing GC script
+/postinstall/bin/checkpoint_gc
+
+# Run epic_postinstall_runner
+#
+# TODO(b/532226255): Disabled due to reboot communication bug. Causes
+# NUGGET_PARAM_AP_IS_REBOOTING call in gscproxy init to fail since an earlier
+# call to enable deferred updates staged by the below script will reboot the
+# GSC.
+#
+# Re-enable once:
+#  1. Reboot-on-status-clear SPI communication bug is fixed
+#  2. Postinstall script is able to determine GSC SPI communication bug is fixed
+#     somehow
+# /postinstall/bin/hw/epic_postinstall_runner

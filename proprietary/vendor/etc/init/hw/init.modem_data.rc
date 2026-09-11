@@ -1,0 +1,11 @@
+on fs
+    mount_all /vendor/etc/fstab.modem_data --early
+    restorecon_recursive /mnt/vendor/protect_f
+    chown radio system /mnt/vendor/protect_f
+    chmod 0750 /mnt/vendor/protect_f
+    restorecon_recursive /mnt/vendor/protect_s
+    chown radio system /mnt/vendor/protect_s
+    chmod 0750 /mnt/vendor/protect_s
+    restorecon_recursive /mnt/vendor/nvdata
+    chown radio system /mnt/vendor/nvdata
+    chmod 0750 /mnt/vendor/nvdata

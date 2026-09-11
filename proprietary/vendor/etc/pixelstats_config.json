@@ -1,0 +1,337 @@
+{
+  "SlowioReadCntPath": "/dev/sys/block/bootdevice/slowio_read_cnt",
+  "SlowioWriteCntPath": "/dev/sys/block/bootdevice/slowio_write_cnt",
+  "SlowioUnmapCntPath": "/dev/sys/block/bootdevice/slowio_unmap_cnt",
+  "SlowioSyncCntPath": "/dev/sys/block/bootdevice/slowio_sync_cnt",
+  "CycleCountBinsPath": "/sys/class/power_supply/battery/cycle_counts",
+  "UFSLifetimeA": "/dev/sys/block/bootdevice/health_descriptor/life_time_estimation_a",
+  "UFSLifetimeB": "/dev/sys/block/bootdevice/health_descriptor/life_time_estimation_b",
+  "UFSLifetimeC": "/dev/sys/block/bootdevice/health_descriptor/life_time_estimation_c",
+  "F2fsStatsPath": "/sys/fs/f2fs/",
+  "ImpedancePath": "/sys/devices/platform/audiometrics/speaker_impedance",
+  "CodecPath": "/sys/devices/platform/audiometrics/codec_state",
+  "EEPROMPath": "/dev/battery_history",
+  "PowerMitigationStatsPath": "/sys/devices/virtual/pmic/mitigation",
+  "BrownoutReasonProp": "vendor.brownout_reason",
+  "BrownoutLogPath": "/data/vendor/mitigation/lastmeal.txt",
+  "SpeakerTemperaturePath": "/sys/devices/platform/audiometrics/speaker_temp",
+  "SpeakerExcursionPath": "/sys/devices/platform/audiometrics/speaker_excursion",
+  "SpeakerHeartBeatPath": "/sys/devices/platform/audiometrics/speaker_heartbeat",
+  "UFSErrStatsPath": [
+    "/dev/sys/block/bootdevice/err_stats/pa_err_count",
+    "/dev/sys/block/bootdevice/err_stats/dl_err_count",
+    "/dev/sys/block/bootdevice/err_stats/nl_err_count",
+    "/dev/sys/block/bootdevice/err_stats/tl_err_count",
+    "/dev/sys/block/bootdevice/err_stats/dme_err_count",
+    "/dev/sys/block/bootdevice/err_stats/fatal_err_count",
+    "/dev/sys/block/bootdevice/err_stats/auto_hibern8_err_count"
+  ],
+  "AmsRatePath": "/sys/devices/platform/audiometrics/ams_rate_read_once",
+  "ResumeLatencyMetricsPath": "/sys/kernel/metrics/resume_latency/resume_latency_metrics",
+  "LongIRQMetricsPath": "/sys/kernel/metrics/irq/long_irq_metrics",
+  "TempResidencyAndResetPaths": [
+    [
+      "/sys/kernel/metrics/thermal/tr_by_group/tmu/stats",
+      "/sys/kernel/metrics/thermal/tr_by_group/tmu/stats_reset"
+    ],
+    [
+      "/sys/kernel/metrics/thermal/tr_by_group/spmic/stats",
+      "/sys/kernel/metrics/thermal/tr_by_group/spmic/stats_reset"
+    ]
+  ],
+  "ThermalTjTripCounterConfig": [
+    {
+      "Name": "AOC",
+      "TripNumbers": [0],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_AOSS",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/AOSS/reset_trip_cnt"
+    },
+    {
+      "Name": "AUR",
+      "TripNumbers": [5, 6, 7],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_AUR",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/AUR/reset_trip_cnt"
+    },
+    {
+      "Name": "BIG",
+      "TripNumbers": [5, 6, 7],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_BIG",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/BIG/reset_trip_cnt"
+    },
+    {
+      "Name": "GPU",
+      "TripNumbers": [5, 6, 7],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_GPU",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/GPU/reset_trip_cnt"
+    },
+    {
+      "Name": "MID",
+      "TripNumbers": [5, 6, 7],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_MID",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/MID/reset_trip_cnt"
+    },
+    {
+      "Name": "LITTLE",
+      "TripNumbers": [5, 6, 7],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_MIDLL",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/MIDLL/reset_trip_cnt"
+    },
+    {
+      "Name": "TPU",
+      "TripNumbers": [5, 6, 7],
+      "ReadPath": "/sys/devices/platform/tmu_thermal/trip_counter_TPU",
+      "ResetPath": "/sys/firmware/mbfs_root/cpm/thermal/tj/TPU/reset_trip_cnt"
+    }
+  ],
+  "ModemPcieLinkStatsPath": "/sys/devices/platform/49de024.pcie/link_stats",
+  "WifiPcieLinkStatsPath": "/sys/devices/platform/49de08c.pcie/link_stats",
+  "WaterEventPaths": [
+    "/sys/bus/i2c/drivers/h2omg/24-0070",
+    "/sys/bus/i2c/drivers/h2omg/24-0071"
+  ],
+  "GMSRPath": [
+    "/sys/class/power_supply/max77779fg/gmsr",
+    "/sys/class/power_supply/maxfg_base/gmsr"
+  ],
+  "FGModelLoadingPath": [
+    "/sys/class/power_supply/max77779fg/model_state",
+    "/sys/class/power_supply/maxfg_base/model_state"
+  ],
+  "FGLogBufferPath": [
+    "/dev/logbuffer_max77779fg_monitor",
+    "/dev/logbuffer_maxfg_base_monitor",
+    "/dev/logbuffer_maxfg_secondary_monitor"
+  ],
+  "FwUpdatePath": [
+    "/dev/logbuffer_max77779_fwupdate",
+    "/dev/logbuffer_wlc_fw_update"
+  ],
+  "FGAbnlPath": [
+    "/dev/logbuffer_max77779fg_monitor",
+    "/dev/logbuffer_maxfg_base_monitor",
+    "/dev/logbuffer_maxfg_secondary_monitor"
+  ],
+  "FGRegDumpPath": [
+    "/sys/class/power_supply/max77779fg/registers_dump",
+    "/sys/class/power_supply/maxfg_base/registers_dump",
+    "/sys/class/power_supply/maxfg_secondary/registers_dump"
+  ],
+  "AudioUevent": "/devices/virtual/amcs/amcs",
+  "TypeCPartnerUevent": "PRODUCT_TYPE=",
+  "FirmwareMetricsPaths": [
+    "/dev/fwmt_strings",
+    "/dev/fwmt_metrics",
+    "/sys/devices/platform/gvdu/status/enabled"
+  ],
+  "DisplayPortStatsPaths": [
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/link_negotiation_failures",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/edid_read_failures",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/dpcd_read_failures",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/edid_invalid_failures",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/sink_count_invalid_failures",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/link_unstable_failures",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/connection_success",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/connection_failure"
+  ],
+  "DisplayPortDSCStatsPaths": [
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/fec_dsc_supported",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/fec_dsc_not_supported"
+  ],
+  "DisplayPortMaxResolutionStatsPaths": [
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_other",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_1366_768",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_1440_900",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_1600_900",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_1920_1080",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_2560_1080",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_2560_1440",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_3440_1440",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_3840_2160",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_5120_2880",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-displayport-stats/max_res_7680_4320"
+  ],
+  "DisplayStatsPaths": [
+    "/sys/class/drm/card0/device/primary-panel/error_count_te",
+    "/sys/class/drm/card0/device/primary-panel/error_count_unknown",
+    "/sys/class/drm/card0/device/secondary-panel/error_count_te",
+    "/sys/class/drm/card0/device/secondary-panel/error_count_unknown",
+    "/sys/class/drm/card0/device/primary-panel/panel_extinfo",
+    "/sys/class/drm/card0/device/primary-panel/panel_error_stats/",
+    "/sys/class/drm/card0/device/secondary-panel/panel_extinfo",
+    "/sys/class/drm/card0/device/secondary-panel/panel_error_stats/",
+    "/sys/class/drm/card0/device/primary-panel/gram_collision_count",
+    "/sys/class/drm/card0/device/secondary-panel/gram_collision_count"
+  ],
+  "DisplayStatsErrorType": [
+    "dsi_sot",
+    "dsi_sot_sync",
+    "dsi_eot_sync",
+    "dsi_escape_mode_entry",
+    "dsi_lp_xmit_sync",
+    "dsi_hs_rx_timeout",
+    "dsi_false_control",
+    "dsi_data_lane_contention",
+    "dsi_ecc_single",
+    "dsi_ecc_multi",
+    "dsi_checksum",
+    "dsi_data_type",
+    "dsi_vc_id_invalid",
+    "dsi_xmit_len",
+    "dsi_reserved",
+    "dsi_protocol_violation",
+    "dsi_read_failure",
+    "vlin1",
+    "te",
+    "pps",
+    "checksum",
+    "esd",
+    "disp_invalid",
+    "vgh",
+    "gram_collision"
+  ],
+  "DpuStatsPaths": [
+    "/sys/class/drm/card0/crtc-0/errors/",
+    "/sys/class/drm/card0/crtc-1/errors/",
+    "/sys/class/drm/card0/crtc-2/errors/",
+    "/sys/class/drm/card0/crtc-3/errors/"
+  ],
+  "DpuStatsErrorType": [
+    "frame_done_missing",
+    "frame_done_timeout",
+    "frame_start_missing",
+    "frame_start_timeout",
+    "underrun_count"
+  ],
+  "DisplayRecoveryStatsPaths": [
+    "/sys/class/drm/card0/crtc-0/recovery_stats/",
+    "/sys/class/drm/card0/crtc-1/recovery_stats/",
+    "/sys/class/drm/card0/crtc-2/recovery_stats/",
+    "/sys/class/drm/card0/crtc-3/recovery_stats/"
+  ],
+  "DisplayRecoveryStatsType": [
+    "manual_success",
+    "manual_failure",
+    "manual_max_retry",
+    "frame_update_timeout_success",
+    "frame_update_timeout_failure",
+    "frame_update_timeout_max_retry",
+    "dsi_err_success",
+    "dsi_err_failure",
+    "dsi_err_max_retry",
+    "ddic_err_success",
+    "ddic_err_failure",
+    "ddic_err_max_retry"
+  ],
+  "DSIErrorStatsPaths": [
+    "/sys/devices/platform/sswrp_dpu@f400000/f7d8000.dsi2host/dw-dsi/",
+    "/sys/devices/platform/sswrp_dpu@f400000/f7f8000.dsi2host/dw-dsi/"
+  ],
+  "DSIErrorStatsType": [
+    "error_irq/cntr_int_phy_l0_erresc",
+    "error_irq/cntr_int_phy_l0_errsyncesc",
+    "error_irq/cntr_int_phy_l0_errcontrol",
+    "error_irq/cntr_int_phy_l0_errcontentionlp0",
+    "error_irq/cntr_int_phy_l0_errcontentionlp1",
+    "error_irq/cntr_int_txhs_fifo_over",
+    "error_irq/cntr_int_txhs_fifo_under",
+    "error_irq/cntr_int_err_to_hstx",
+    "error_irq/cntr_int_err_to_hstxrdy",
+    "error_irq/cntr_int_err_to_lprx",
+    "error_irq/cntr_int_err_to_lptxrdy",
+    "error_irq/cntr_int_err_to_lptxtrig",
+    "error_irq/cntr_int_err_to_lptxulps",
+    "error_irq/cntr_int_err_to_bta",
+    "error_irq/cntr_int_err_ack_rpt_0",
+    "error_irq/cntr_int_err_ack_rpt_1",
+    "error_irq/cntr_int_err_ack_rpt_2",
+    "error_irq/cntr_int_err_ack_rpt_3",
+    "error_irq/cntr_int_err_ack_rpt_4",
+    "error_irq/cntr_int_err_ack_rpt_5",
+    "error_irq/cntr_int_err_ack_rpt_6",
+    "error_irq/cntr_int_err_ack_rpt_7",
+    "error_irq/cntr_int_err_ack_rpt_8",
+    "error_irq/cntr_int_err_ack_rpt_9",
+    "error_irq/cntr_int_err_ack_rpt_10",
+    "error_irq/cntr_int_err_ack_rpt_11",
+    "error_irq/cntr_int_err_ack_rpt_12",
+    "error_irq/cntr_int_err_ack_rpt_13",
+    "error_irq/cntr_int_err_ack_rpt_14",
+    "error_irq/cntr_int_err_ack_rpt_15",
+    "error_irq/cntr_int_err_display_cmd_time",
+    "error_irq/cntr_int_err_ipi_dtype",
+    "error_irq/cntr_int_err_vid_bandwidth",
+    "error_irq/cntr_int_err_ipi_cmd",
+    "error_irq/cntr_int_err_display_cmd_ovfl",
+    "error_irq/cntr_int_ipi_event_fifo_over",
+    "error_irq/cntr_int_ipi_event_fifo_under",
+    "error_irq/cntr_int_ipi_pixel_fifo_over",
+    "error_irq/cntr_int_ipi_pixel_fifo_under",
+    "error_irq/cntr_int_err_pri_tx_time",
+    "error_irq/cntr_int_err_pri_tx_cmd",
+    "error_irq/cntr_int_err_cri_cmd_time",
+    "error_irq/cntr_int_err_cri_dtype",
+    "error_irq/cntr_int_err_cri_vchannel",
+    "error_irq/cntr_int_err_cri_rx_length",
+    "error_irq/cntr_int_err_cri_ecc",
+    "error_irq/cntr_int_err_cri_ecc_fatal",
+    "error_irq/cntr_int_err_cri_crc",
+    "error_irq/cntr_int_cmd_rd_pld_fifo_over",
+    "error_irq/cntr_int_cmd_rd_pld_fifo_under",
+    "error_irq/cntr_int_cmd_wr_pld_fifo_over",
+    "error_irq/cntr_int_cmd_wr_pld_fifo_under",
+    "error_irq/cntr_int_cmd_wr_hdr_fifo_over",
+    "error_irq/cntr_int_cmd_wr_hdr_fifo_under",
+    "error_event/stat_cri_busy",
+    "error_event/stat_pri_busy",
+    "error_event/stat_ulps_exit_err",
+    "error_event/stat_ulps_enter_err",
+    "error_event/stat_dcs_read_ack_err",
+    "error_event/stat_dcs_read_extra_data",
+    "error_event/stat_dcs_read_data_not_arrived"
+  ],
+  "HDCPStatsPaths": [
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-hdcp/hdcp2_success_count",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-hdcp/hdcp2_fallback_count",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-hdcp/hdcp2_fail_count",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-hdcp/hdcp1_success_count",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-hdcp/hdcp1_fail_count",
+    "/sys/devices/platform/a2b4000.dwc_dptx/drm-hdcp/hdcp0_count"
+  ],
+  "HardwareComponentInfoConfig": {
+    "APPLICATION_PROCESSOR": {
+      "vendor": {"Source": "Property", "Path": "ro.soc.manufacturer"},
+      "hw_version": {"Source": "Property", "Path": "ro.boot.hw.soc.rev"}
+    },
+    "MEMORY": {
+      "vendor": {"Source":  "Property", "Path": "ro.boot.ddr_info"},
+      "size": {"Source":  "Property", "Path": "ro.boot.ddr_size"}
+    },
+    "STORAGE": {
+      "vendor": {"Source":  "File", "Path": "/sys/bus/scsi/devices/0:0:0:0/vendor"},
+      "size": {"Source":  "Property", "Path": "ro.boot.hardware.ufs"},
+      "sw_version": {"Source":  "File", "Path": "/sys/bus/scsi/devices/0:0:0:0/rev"}
+    },
+    "DISPLAY": {
+      "vendor": {"Source":  "File", "Path": "/sys/devices/platform/sswrp_dpu@f400000/sswrp_dpu@f400000:display-subsystem/primary-panel/panel_name"},
+      "serial_number": {"Source":  "File", "Path": "/sys/devices/platform/sswrp_dpu@f400000/sswrp_dpu@f400000:display-subsystem/primary-panel/serial_number"}
+    },
+    "BATTERY": {
+      "size": {"Source":  "File", "Path": "/sys/class/power_supply/battery/charge_full_design"},
+      "serial_number": {"Source": "File", "Paths": [
+        "/sys/class/power_supply/maxfg_base/serial_number",
+        "/sys/class/power_supply/max77779fg/serial_number",
+        "/sys/class/power_supply/maxfg/serial_number"
+      ]}
+    },
+    "BATTERY_SECONDARY": {
+      "size": {"Source":  "File", "Path": "/sys/class/power_supply/battery/charge_full_design"},
+      "serial_number": {"Source": "File", "Path": "/sys/class/power_supply/maxfg_secondary/serial_number", "Required":  true}
+    },
+    "DISPLAY_SECONDARY": {
+      "vendor": {"Source":  "File", "Path": "/sys/devices/platform/sswrp_dpu@f400000/sswrp_dpu@f400000:display-subsystem/secondary-panel/panel_name"},
+      "serial_number": {"Source":  "File", "Path": "/sys/devices/platform/sswrp_dpu@f400000/sswrp_dpu@f400000:display-subsystem/secondary-panel/serial_number", "Required":  true}
+    }
+  },
+  "DvsClcStatsPath": "/sys/devices/platform/cap_sysfs/aging_clc_stats",
+  "SSRestartPath": "/data/vendor/ssrdump"
+}

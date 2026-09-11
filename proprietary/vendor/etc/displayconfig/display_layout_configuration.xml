@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+
+<!-- Copyright (C) 2023 Google Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<layouts>
+    <layout>
+        <name>folded</name>
+        <state>0</state>
+
+        <display enabled="false">
+            <address>4619827677550801152</address>
+        </display>
+
+        <display enabled="true" defaultDisplay="true">
+            <address>4619827677550801153</address>
+        </display>
+    </layout>
+
+    <layout>
+        <name>half-open</name>
+        <state>1</state>
+
+        <display enabled="true" defaultDisplay="true">
+            <address>4619827677550801152</address>
+        </display>
+
+        <display enabled="false">
+            <address>4619827677550801153</address>
+        </display>
+    </layout>
+
+    <layout>
+        <name>open</name>
+        <state>2</state>
+
+        <display enabled="true" defaultDisplay="true">
+            <address>4619827677550801152</address>
+        </display>
+
+        <display enabled="false">
+            <address>4619827677550801153</address>
+        </display>
+    </layout>
+
+    <layout>
+        <name>rear-display</name>
+        <state>3</state>
+
+        <display enabled="false">
+            <address>4619827677550801152</address>
+        </display>
+
+        <display enabled="true" defaultDisplay="true">
+            <address>4619827677550801153</address>
+        </display>
+    </layout>
+
+    <layout>
+        <name>dual-display</name>
+        <state>4</state>
+        <display enabled="true" defaultDisplay="true" refreshRateZoneId="concurrent">
+            <address>4619827677550801152</address>
+            <position>front</position>
+            <powerThrottlingMapId>concurrent</powerThrottlingMapId>
+            <refreshRateThermalThrottlingMapId>concurrent</refreshRateThermalThrottlingMapId>
+        </display>
+
+        <display enabled="true" refreshRateZoneId="concurrent">
+            <address>4619827677550801153</address>
+            <position>rear</position>
+            <powerThrottlingMapId>concurrent</powerThrottlingMapId>
+            <leadDisplayAddress>4619827677550801152</leadDisplayAddress>
+        </display>
+    </layout>
+
+    <layout>
+        <name>dual-display-reverse</name>
+        <state>5</state>
+        <display enabled="true" defaultDisplay="true" refreshRateZoneId="concurrent">
+            <address>4619827677550801153</address>
+            <!-- Although this is the outer "rear" display, in this mode it is front relative
+                 to the user. The inner display which is facing away from the user is the
+                 rear display. Configuring it this way also means that DisplayManagerService's
+                 mirrororing logic can correctly prevent the outer display's content from
+                 being mirrored onto the inner display. -->
+            <position>front</position>
+            <powerThrottlingMapId>concurrent</powerThrottlingMapId>
+        </display>
+
+        <display enabled="true" refreshRateZoneId="concurrent">
+            <address>4619827677550801152</address>
+            <position>rear</position>
+            <powerThrottlingMapId>concurrent</powerThrottlingMapId>
+            <refreshRateThermalThrottlingMapId>concurrent</refreshRateThermalThrottlingMapId>
+            <leadDisplayAddress>4619827677550801153</leadDisplayAddress>
+        </display>
+    </layout>
+
+</layouts>

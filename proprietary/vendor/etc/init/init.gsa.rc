@@ -1,0 +1,4 @@
+on init
+    # Change GSA pm_stat group for dumpstate
+    chmod 660         /dev/gsa_pm_stat0
+    chown root system /dev/gsa_pm_stat0

@@ -1,0 +1,238 @@
+{
+    "MitigationMethod":[
+        {
+            "Name":"AUDIO_MITIGATION",
+            "Module":"AUDIO",
+            "Trigger":["OILO1", "OILO2", "UVLO1", "UVLO2"],
+            "State":["LIGHT", "MEDIUM", "HEAVY", "DISABLED"],
+            "Condition":"BASIC"
+        },
+        {
+            "Name":"DISPLAY_MITIGATION",
+            "Module":"DISPLAY",
+            "Trigger":["BATTERYLVL"],
+            "State":["LIGHT", "MEDIUM", "HEAVY", "DISABLED"],
+            "Condition":"BASIC"
+        },
+        {
+            "Name":"UNDEFINED",
+            "Module":"UNDEFINED",
+            "Trigger":["OILO1", "OILO2", "UVLO1", "UVLO2", "SMPL"],
+            "State":["START", "LIGHT", "MEDIUM", "HEAVY", "DISABLED"],
+            "Condition":"BASIC"
+        }
+    ],
+    "MitigationConfig": {
+        "QuickSaveStats": 1,
+        "TriggerDeglitchMS": 1000
+    },
+    "AdaptiveConfig": {
+        "SeverityWeights": {
+            "CRITICAL": 3,
+            "HEAVY": 2,
+            "MEDIUM": 1,
+            "NONE": 0
+        },
+        "Sources": [
+            {
+                "Name": "battery_level",
+                "RangeMap": [
+                    {"Range": [0, 3], "Output":"CRITICAL"},
+                    {"Range": [4, 5], "Output":"HEAVY"},
+                    {"Range": [6, 10], "Output":"MEDIUM"},
+                    {"Range": [11, 100], "Output":"NONE"}
+                ]
+            }
+        ],
+        "SeverityToOutputMap": {
+            "CRITICAL": [
+                {
+                    "Name": "batoilo1_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "4600"
+                },
+                {
+                    "Name": "batoilo1_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "4600"
+                },
+                {
+                    "Name": "batoilo1_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "4600"
+                },
+                {
+                    "Name": "batoilo2_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5400"
+                },
+                {
+                    "Name": "batoilo2_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5400"
+                },
+                {
+                    "Name": "batoilo2_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5400"
+                },
+                {
+                    "Name": "batoilo1_det",
+                    "Type": "debounce_time",
+                    "Value": "0x09"
+                },
+                {
+                    "Name": "batoilo2_det",
+                    "Type": "debounce_time",
+                    "Value": "0"
+                },
+                {
+                    "Name": "throttle_state",
+                    "Type": "userspace",
+                    "Value": "3"
+                }
+            ],
+            "HEAVY": [
+                {
+                    "Name": "batoilo1_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "4600"
+                },
+                {
+                    "Name": "batoilo1_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "4600"
+                },
+                {
+                    "Name": "batoilo1_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "4600"
+                },
+                {
+                    "Name": "batoilo2_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5400"
+                },
+                {
+                    "Name": "batoilo2_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5400"
+                },
+                {
+                    "Name": "batoilo2_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5400"
+                },
+                {
+                    "Name": "batoilo1_det",
+                    "Type": "debounce_time",
+                    "Value": "0x09"
+                },
+                {
+                    "Name": "batoilo2_det",
+                    "Type": "debounce_time",
+                    "Value": "0"
+                },
+                {
+                    "Name": "throttle_state",
+                    "Type": "userspace",
+                    "Value": "2"
+                }
+            ],
+            "MEDIUM": [
+                {
+                    "Name": "batoilo1_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5200"
+                },
+                {
+                    "Name": "batoilo1_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5200"
+                },
+                {
+                    "Name": "batoilo1_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "5200"
+                },
+                {
+                    "Name": "batoilo2_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "6000"
+                },
+                {
+                    "Name": "batoilo2_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "6000"
+                },
+                {
+                    "Name": "batoilo2_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "6000"
+                },
+                {
+                    "Name": "batoilo1_det",
+                    "Type": "debounce_time",
+                    "Value": "0x1a"
+                },
+                {
+                    "Name": "batoilo2_det",
+                    "Type": "debounce_time",
+                    "Value": "0"
+                },
+                {
+                    "Name": "throttle_state",
+                    "Type": "userspace",
+                    "Value": "0"
+                }
+            ],
+            "NONE": [
+                {
+                    "Name": "batoilo1_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "6200"
+                },
+                {
+                    "Name": "batoilo1_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "6200"
+                },
+                {
+                    "Name": "batoilo1_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "6200"
+                },
+                {
+                    "Name": "batoilo2_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "7000"
+                },
+                {
+                    "Name": "batoilo2_usb_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "7000"
+                },
+                {
+                    "Name": "batoilo2_wlc_lvl",
+                    "Type": "triggered_lvl",
+                    "Value": "7000"
+                },
+                {
+                    "Name": "batoilo1_det",
+                    "Type": "debounce_time",
+                    "Value": "0x1a"
+                },
+                {
+                    "Name": "batoilo2_det",
+                    "Type": "debounce_time",
+                    "Value": "1"
+                },
+                {
+                    "Name": "throttle_state",
+                    "Type": "userspace",
+                    "Value": "0"
+                }
+            ]
+        }
+    }
+}

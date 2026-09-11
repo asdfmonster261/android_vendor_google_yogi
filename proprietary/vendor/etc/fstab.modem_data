@@ -1,0 +1,7 @@
+# Android fstab file for modem data partitions
+#
+#<src>                                                   <mnt_point>                 <type>  <mnt_flags and options>  <fs_mgr_flags>
+/dev/block/platform/3c2d0000.ufs/by-name/protect_f       /mnt/vendor/protect_f       ext4    noatime,sync             wait,check,formattable
+/dev/block/platform/3c2d0000.ufs/by-name/protect_s       /mnt/vendor/protect_s       ext4    noatime,sync             wait,check,formattable
+/dev/block/platform/3c2d0000.ufs/by-name/nvdata          /mnt/vendor/nvdata          ext4    noatime,sync             wait,check,formattable
+/dev/block/platform/3c2d0000.ufs/by-name/nvram           /nvram                      emmc    defaults                 defaults

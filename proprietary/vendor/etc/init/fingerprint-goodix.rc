@@ -1,0 +1,21 @@
+service vendor.fingerprint-goodix /vendor/bin/hw/android.hardware.biometrics.fingerprint-service.goodix
+    class late_start
+    user system
+    group system input uhid
+    priority -20
+    disabled
+
+on early-boot
+    chown root system /sys/module/trusty_virtio/parameters/use_high_wq
+    chown root system /sys/module/trusty_core/parameters/use_high_wq
+    chown system system /dev/goodix_fp
+    setprop vendor.gf.debug.dump_data 0
+    setprop vendor.gf.debug.dump_bigdata_data 0
+
+on property:ro.vendor.trusty.storage.fs_ready=1
+    exec_background - system shell -- /vendor/bin/trusty_apploader /vendor/firmware/3626.app
+    enable vendor.fingerprint-goodix
+
+on property:ro.vendor.factory=1
+    setprop vendor.gf.debug.dump_data 1
+    setprop vendor.gf.debug.dump_bigdata_data 1

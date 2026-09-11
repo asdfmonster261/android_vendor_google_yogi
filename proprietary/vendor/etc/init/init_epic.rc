@@ -1,0 +1,44 @@
+#
+# Copyright 2025 The Android Open-Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# This should be everything required for init Epic
+
+on init
+    enable vendor.citadeld
+    setprop vendor.nos.citadel.updates_tried 0
+    setprop vendor.nos.citadel.do_boot_init 1
+
+# This checks for and applies firmware updates
+service vendor.init_citadel /vendor/bin/hw/init_citadel
+    oneshot
+    disabled
+    user hsm
+    group hsm
+    ioprio idle 0
+
+# This checks for and applies firmware updates during postinstall. Is disabled
+# since we wait for postinstall service to explicitly invoke it.
+service vendor.init_citadel_postinstall /vendor/bin/hw/init_citadel --firmware-root /postinstall
+    oneshot
+    disabled
+    user hsm
+    group hsm
+    ioprio idle 0
+
+# Only do init_citadel once. Use the updates_tried property to control this.
+on property:init.svc.vendor.citadeld=running && property:vendor.nos.citadel.do_boot_init=1
+    setprop vendor.nos.citadel.do_boot_init 0
+    start vendor.init_citadel

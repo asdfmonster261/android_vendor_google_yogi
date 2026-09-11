@@ -1,0 +1,9 @@
+on post-fs-data
+    mkdir /data/vendor/gps/gnss_config 0775 gps gps
+
+service gnss_dbg_ctrl_enable /vendor/bin/hw/gnss_dbg_ctrl cfg set gnss_log_start=1
+    class main
+    user gps
+    group log system shell radio sdcard_rw inet sdcard_r media_rw
+    disabled
+    oneshot

@@ -1,0 +1,104 @@
+#
+# Yogi sensor device configuration registry script for the Proto 1.0 stage.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-mbu
+#
+
+?+0x72100:0xFFFFFFF0  # Proto 1.0
+# Exclude
+?-0x72101             # Proto 1.0 LED
+
+#
+# Record reg_script.
+#
+
++/
+reg_script=yogi_proto_1_0.reg
+
+#
+# Sensors
+#
+
+# ALSP
++/dev/tmd3743/0/als
+  # DBV table and dependent parameters for each frequency in pwm_hz table.
+  #   Each parameter is appended with an index, equal to the index of the
+  #   PWM frequency it corresponds to, in the pwm_hz table.
+  itime_table_brightness_0=1500 2918 16384
+  itime_table_0=1600000 1200000 300000
+  max_gain_table_0=7 7 7
+  prox_delay_30hz_0=24700 24700 24700
+  prox_delay_60hz_0=12000 12000 12000
+  prox_delay_120hz_0=3600 3600 3600
+  itime_table_brightness_1=1500 2918 16384
+  itime_table_1=1600000 1200000 300000
+  max_gain_table_1=7 7 7
+  prox_delay_30hz_1=24700 24700 24700
+  prox_delay_60hz_1=12000 12000 12000
+  prox_delay_120hz_1=3600 3600 3600
+
++/dev/tmd3743/0/prox
+  pulse_count=2
+  pulse_len_us=32
+  gain1=128
+
++/dev/tcs3743/0/als
+  itime_table_0=1600000 1000000 300000
+  itime_table_brightness_0=305 644 4096
+  max_gain_table_0=7 7 7
+  itime_table_1=1600000 1000000 300000
+  itime_table_brightness_1=305 644 4096
+  max_gain_table_1=7 7 7
+
+# MAG 0 (MMC5616WA)
++/dev/mmc5616/0
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=6250000
+  bus_addr=0x30
+  i3c_addr=0x14
+  sensor_instance=1
+  orientation_transform=-2 -1 -3
++/dev/mmc5616/0/mag
+  name=MMC5616 Magnetometer 0
+
+# MAG 1 (MMC5616WA)
++/dev/mmc5616/1
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x30
+  sensor_instance=2
+  orientation_transform=-2 1 3
++/dev/mmc5616/1/mag
+  name=MMC5616 Magnetometer 1
+
+# MAG 2 (MMC5616WA)
++/dev/mmc5616/2
+  bus_name=i3c4
+  bus_freq_hz=400000
+  i3c_freq_hz=6250000
+  bus_addr=0x30
+  i3c_addr=0x14
+  sensor_instance=3
+  orientation_transform=2 1 -3
++/dev/mmc5616/2/mag
+  name=MMC5616 Magnetometer 2
+
+# BARO 1 (SPL07003).
++/dev/spxyz00n/1
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x76
++/dev/spxyz00n/1/baro
+  name=SPL07003 Barometer
++/dev/spxyz00n/1/temp
+  name=SPL07003 Temperature
+
++/dev/vd628x/0/rls
+  lux_scale=108.1642

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mnl_config version="21111601.6.00.00" type="gps">
+<feature>IFB
+<version>1.0</version>
+<config>1</config>
+<format> CH:-7 to 6 </format>
+<setting>-6.16,-5.44,-4.43,0.99,-0.50,-4.32,-1.12,0,-0.25,-1.12,-2.91,-4.53,-8.57,-12.38</setting>
+</feature>
+<feature>GGTO
+<version>1.0</version>
+<config>1</config>
+<format> GLONASS time offset, BEIDOU time offset, GALILEO time offset, NAVIC time offset, Unit: meter </format>
+<setting>7.53,0.79,3.08,20.13</setting>
+</feature>
+<feature>DCB
+<version>1.0</version>
+<config>1</config>
+<format>L5_DCB_GPS,L5_DCB_QZSS,L5_DCB_CNSS,L5_DCB_GALILEO</format>
+<setting>-2.1,-2.1,-4.13,-3.06</setting>
+<format>L1C_DCB_GPS,L1C_DCB_QZSS,B1C_DCB_CNSS</format>
+<setting>0.85,0.85,1.58</setting>
+</feature>
+<feature>L1Only
+<version>1.0</version>
+<config>0</config>
+<format>L1 only: 1</format>
+<setting>0</setting>
+</feature>
+<feature>L5Test
+<version>1.0</version>
+<config>0</config>
+<format>Search and used GPS L5 satellites according to the healthy status: 0, Search and used GPS L5 satellites regardless of its healthy status: 1</format>
+<setting>1</setting>
+</feature>
+<feature>CAIC
+<version>1.0</version>
+<config>0</config>
+<format>L1 CAIC FrequencyHz</format>
+<setting>1560000000</setting>
+<format>L5 CAIC FrequencyHz</format>
+<setting>1170000000</setting>
+</feature>
+<feature>GnssMode
+<version>1.0</version>
+<config>0</config>
+<format>GP+GL+BD:2, GP:3, BD:4, GP+GL+GA+BD:6, GP+GL+GA:8, GP+GL+GA+BD+NI:10, BD+GL+GA+NI:11</format>
+<setting>10</setting>
+</feature>
+<feature>CoTMS
+<version>5.2</version>
+<config>1</config>
+<format>RTS,TEP</format>
+<setting>3,4</setting>
+</feature>
+<feature>SwitchTIA
+<version>1</version>
+<config>1</config>
+<format>enable:1,disable:0</format>
+<setting>1</setting>
+</feature>
+<feature>Blanking
+<version>1</version>
+<config>0</config>
+<format>enable:1,disable:0</format>
+<setting>0</setting>
+</feature>
+<feature>MDTime
+<version>3.0</version>
+<config>1</config>
+<format>featureOption,requestInterval,sizeOfWindow,syncBackNum(optional),syncInterval</format>
+<setting>1,3000,1500,0,120</setting>
+</feature>
+<feature>Time_Source
+<version>1.0</version>
+<config>1</config>
+<format>RAT,SIB</format>
+<setting>50,6</setting>
+</feature>
+<feature>DGPSMode
+<version>1.0</version>
+<config>0</config>
+<format>Disable:0, SBAS:2, SBAS+B2B:10, SBAS+B2B+PPP:42</format>
+<setting>42</setting>
+</feature>
+<feature>GNSSPower
+<version>1.0</version>
+<config>1</config>
+<format>singlebandTracking,multibandTracking,singlebandAcquisition,multibandAcquisition,otherModes[0],otherModes[1],otherModes[2],otherModes[3],otherModes[4],otherModes[5]</format>
+<setting>29.42,55.38,29.42,55.38,9.74,17.53,14.57,29.61,29.02,29.02</setting>
+</feature>
+<feature>OSNMA
+<version>1.0</version>
+<config>1</config>
+<format>Disable:-1, Enable OSNMA when NMAS is test or operational phase: 1, Enable OSNMA when NMAS is operational phase: 2</format>
+<setting>1</setting>
+</feature>
+<feature>MVN1_List
+<version>1.0</version>
+<config>1</config>
+<format>Disable:0,support n1 sv</format>
+<setting>512</setting>
+</feature>
+<feature>Ticksync
+<version>1.0</version>
+<config>1</config>
+<format>Enable,mode,period,width,delay</format>
+<setting>1,4,1,100,0</setting>
+</feature>
+<feature>BACKGROUND_MODE
+<version>1.0</version>
+<config>1</config>
+<format>1:CLDMA0 binary protocol,2:CLDMA4,3:UART</format>
+<setting>2</setting>
+</feature>
+<feature>RFPathLoss
+<version>2.0</version>
+<config>1</config>
+<format>GPS_L1,GALILEO_L1,GLONASS_1,GLONASS_2,GLONASS_3,CNSS_L1,GPS_L1C,CNSS_L1C</format>
+<setting>4.0,4.0,5.5,5.6,5.7,4.8,4.0,4.8</setting>
+<format>GPS_L5,GALILEO_E5a,GALILEO_E5b,CNSS_B2a,CNSS_B2b,NAVIC</format>
+<setting>3.7,3.7,3.7,3.7,3.7,3.7</setting>
+<format>GSV GPS_L1,GALILEO_L1,GLONASS_1,GLONASS_2,GLONASS_3,CNSS_L1,GPS_L1C,CNSS_L1C</format>
+<setting>4.0,4.0,5.5,5.6,5.7,4.8,4.0,4.8</setting>
+<format>GSV GPS_L5,GALILEO_E5a,GALILEO_E5b,CNSS_B2a,CNSS_B2b,NAVIC</format>
+<setting>3.7,3.7,3.7,3.7,3.7,3.7</setting>
+</feature>
+<feature>USswitch
+<version>1.0</version>
+<config>1</config>
+<format>mode,bitmask,min lat, max lat, min long, max long</format>
+<setting>1,104,24.5,48.7,-124.6,-69.7</setting>
+</feature>
+<feature>switch_agps
+<version>1.0</version>
+<config>1</config>
+<format>1:SUPL,2:GnssAssistance,3:SUPL+GnssAssistance</format>
+<setting>3</setting>
+</feature>
+<feature>Bluesky
+<version>1.0</version>
+<config>1</config>
+<format>disable:0, problos+position aiding:1, ebearing:2, driving:3</format>
+<setting>2</setting>
+</feature>
+<feature>iono_aiding
+<version>1.0</version>
+<config>1</config>
+<format>0:PRC, 1:IONEX</format>
+<setting>1</setting>
+</feature>
+<feature>AGNSS2SAP
+<version>1.0</version>
+<config>1</config>
+<format>Enable</format>
+<setting>1</setting>
+</feature>
+</mnl_config>

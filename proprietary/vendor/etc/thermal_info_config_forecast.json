@@ -1,0 +1,91 @@
+{
+    "Sensors":[
+        {
+            "Name": "VIRTUAL-SKIN-PREDICTION-MODEL",
+            "Type": "UNKNOWN",
+            "Version": "v1.0.1",
+            "VirtualSensor": true,
+            "ModelPath": "future_vt_prediction_model.tflite",
+            "Formula": "USE_ML_MODEL",
+            "Combination": ["charging_therm", "disp0_therm", "disp1_therm", "flash_therm", "north_therm", "rfpa_therm", "soc_therm", "usb_pwr_therm", "VIRTUAL-SKIN-EQ"],
+            "Multiplier": 0.001,
+            "PreviousSampleCount": 11,
+            "OutputLabelCount": 10,
+            "SupportUnderSampling": true,
+            "SupportPrediction": true,
+            "SampleDuration": 7000,
+            "TimeResolution": 7000
+        },
+        {
+            "Name": "VT-FORECAST-NOW",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Formula": "PREVIOUSLY_PREDICTED",
+            "Combination": ["VIRTUAL-SKIN-PREDICTION-MODEL"],
+            "PredictionDuration": 0,
+            "Multiplier": 0.001
+        },
+        {
+            "Name": "VT-FORECAST-30SEC-BACK",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Formula": "PREVIOUSLY_PREDICTED",
+            "Combination": ["VIRTUAL-SKIN-PREDICTION-MODEL"],
+            "PredictionDuration": -30000,
+            "Multiplier": 0.001
+        },
+        {
+            "Name": "VT-FORECAST-60SEC-BACK",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Formula": "PREVIOUSLY_PREDICTED",
+            "Combination": ["VIRTUAL-SKIN-PREDICTION-MODEL"],
+            "PredictionDuration": -60000,
+            "Multiplier": 0.001
+        },
+        {
+            "Name": "VT-FORECAST-ERROR-NOW",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Hidden": true,
+            "Formula": "WEIGHTED_AVG",
+            "Combination": ["VT-FORECAST-NOW", "VIRTUAL-SKIN"],
+            "Coefficient": [1.0, -1.0],
+            "Multiplier": 1
+        },
+        {
+            "Name": "VT-FORECAST-ERROR-30SEC",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Hidden": true,
+            "Formula": "WEIGHTED_AVG",
+            "Combination": ["VT-FORECAST-30SEC-BACK", "VIRTUAL-SKIN"],
+            "Coefficient": [1.0, -1.0],
+            "Multiplier": 1
+        },
+        {
+            "Name": "VT-FORECAST-ERROR-60SEC",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Hidden": true,
+            "Formula": "WEIGHTED_AVG",
+            "Combination": ["VT-FORECAST-60SEC-BACK", "VIRTUAL-SKIN"],
+            "Coefficient": [1.0, -1.0],
+            "Multiplier": 1
+        },
+        {
+            "Name": "FORECAST-UPDATOR",
+            "Type": "UNKNOWN",
+            "VirtualSensor": true,
+            "Hidden": true,
+            "TriggerSensor": ["charging_therm", "north_therm", "flash_therm", "usb_pwr_therm"],
+            "Formula": "WEIGHTED_AVG",
+            "Combination": ["VIRTUAL-SKIN-PREDICTION-MODEL", "VT-FORECAST-ERROR-60SEC", "VT-FORECAST-ERROR-30SEC", "VT-FORECAST-ERROR-NOW"],
+            "Coefficient": [0.0, 0.0, 0.0, 0.0],
+            "Multiplier": 1,
+            "SendPowerHint": true,
+            "PollingDelay": 300000,
+            "PassiveDelay": 7000
+        }
+    ]
+}

@@ -1,0 +1,164 @@
+# yogi specific init.rc
+import /vendor/etc/init/hw/init.${ro.boot.hardware.platform}.rc
+
+on init && property:ro.vendor.factory=1
+    import /vendor/etc/init/hw/init.factory.rc
+
+on init
+    # eSE streset tool name
+    setprop persist.vendor.se.streset libstreset26
+    # Nfc
+    setprop persist.vendor.nfc.streset libstreset26
+
+# Hall sensor
+on init && property:ro.bootmode=normal
+    write /sys/devices/platform/hall_sensor/enable 0
+
+on init && property:ro.bootmode=unknown
+    write /sys/devices/platform/hall_sensor/enable 0
+
+on init && property:ro.bootmode=factory
+    write /sys/devices/platform/hall_sensor/enable 0
+
+on early-boot
+    # Wait for insmod_sh to finish all common modules
+    wait_for_prop vendor.common.modules.ready 1
+    start insmod_sh_yogi
+
+service insmod_sh_yogi /vendor/bin/insmod.sh /vendor_dlkm/etc/init.insmod.${ro.hardware}.cfg
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+on property:vendor.mfgapi.touchpanel.permission=1
+    chmod 0600 /sys/devices/virtual/sec/tsp/cmd
+    chown system system /sys/devices/virtual/sec/tsp/cmd
+
+# Overrides fingerprint antispoof if following persist sysprops are set
+on boot && property:ro.build.type=userdebug && \
+           property:persist.vendor.fingerprint.disable.fake.override=0
+    setprop vendor.fingerprint.disable.fake ${persist.vendor.fingerprint.disable.fake.override}
+
+on boot && property:ro.build.type=userdebug && \
+           property:persist.vendor.fingerprint.disable.fake.override=1
+    setprop vendor.fingerprint.disable.fake ${persist.vendor.fingerprint.disable.fake.override}
+
+on boot && property:ro.build.type=userdebug && \
+           property:persist.vendor.fingerprint.disable.fake.override=100
+    setprop vendor.fingerprint.disable.fake ${persist.vendor.fingerprint.disable.fake.override}
+
+# camera shutter sound
+on boot
+    setprop audio.camerasound.locale.enabled true
+
+# WiFi
+on post-fs-data
+    setprop wifi.direct.interface p2p-dev-wlan0
+    setprop wifi.aware.interface aware_nmi0
+
+    # Speaker amp permission
+    chmod 644 /mnt/vendor/persist/audio/speaker.cal
+    chmod 644 /mnt/vendor/persist/audio/speaker.f0
+    # Microphone compensation file permission
+    chmod 644 /mnt/vendor/persist/audio/mic_compensation.bin
+
+# Kernel log
+on post-fs-data
+    chmod 0622 /dev/kmsg
+
+# Bluetooth
+on post-fs-data
+    chown bluetooth system /sys/devices/platform/odm/odm:btbcm/rfkill/rfkill0/state
+    chown bluetooth system /sys/devices/platform/odm/odm:btbcm/rfkill/rfkill2/state
+    chown bluetooth system /sys/class/rfkill/rfkill0/state
+    chown bluetooth system /proc/bluetooth/sleep/btwake
+    chown bluetooth system /proc/bluetooth/sleep/lpm
+    chown bluetooth system /proc/bluetooth/sleep/btwrite
+    chown bluetooth system /proc/bluetooth/timesync
+
+# Haptics
+on property:vendor.all.modules.ready=1
+    mkdir /mnt/vendor/persist/haptics 0770 system system
+    chmod 770 /mnt/vendor/persist/haptics
+    chmod 440 /mnt/vendor/persist/haptics/cs40l26.cal
+    chown system system /mnt/vendor/persist/haptics
+    chown system system /mnt/vendor/persist/haptics/cs40l26.cal
+
+    chown system system /sys/bus/i2c/devices/8-0043/calibration/f0_stored
+    chown system system /sys/bus/i2c/devices/8-0043/calibration/q_stored
+    chown system system /sys/bus/i2c/devices/8-0043/calibration/redc_stored
+    chown system system /sys/bus/i2c/devices/8-0043/calibration/dvl_peq_coefficients
+    chown system system /sys/bus/i2c/devices/8-0043/data_logger/avg_power
+    chown system system /sys/bus/i2c/devices/8-0043/data_logger/logging_en
+    chown system system /sys/bus/i2c/devices/8-0043/data_logger/logging_reset
+    chown system system /sys/bus/i2c/devices/8-0043/default/vibe_state
+    chown system system /sys/bus/i2c/devices/8-0043/default/num_waves
+    chown system system /sys/bus/i2c/devices/8-0043/default/f0_offset
+    chown system system /sys/bus/i2c/devices/8-0043/default/owt_free_space
+    chown system system /sys/bus/i2c/devices/8-0043/default/owt_lib_compat
+    chown system system /sys/bus/i2c/devices/8-0043/default/f0_comp_enable
+    chown system system /sys/bus/i2c/devices/8-0043/default/redc_comp_enable
+    chown system system /sys/bus/i2c/devices/8-0043/default/delay_before_stop_playback_us
+    chown system system /sys/bus/i2c/devices/8-0043/default/braking_time_bank
+    chown system system /sys/bus/i2c/devices/8-0043/default/braking_time_index
+    chown system system /sys/bus/i2c/devices/8-0043/default/braking_time_ms
+    chown system system /sys/bus/i2c/devices/8-0043/default/error_log
+    chown system system /sys/bus/i2c/devices/8-0043/firmware/fw_algo_id
+    chown system system /sys/bus/i2c/devices/8-0043/firmware/fw_ctrl_name
+    chown system system /sys/bus/i2c/devices/8-0043/firmware/fw_mem_block_type
+    chown system system /sys/bus/i2c/devices/8-0043/firmware/fw_ctrl_val
+
+    enable vendor.vibrator.cs40l26
+
+# NFC
+on post-fs-data
+    mkdir /data/vendor/nfc 0770 nfc nfc
+on property:ro.boot.hardware.revision=PROTO1.0
+    setprop persist.vendor.nfc.config_file_name libnfc-hal-st_p1.conf
+
+# Display
+on fs && property:ro.boot.hw.soc.rev=0
+    write /sys/class/devfreq/dpu_clamp/max_freq 356000000
+
+# Toggle high_sensitivity according to touch_sensitivity_mode
+on property:persist.vendor.touch_sensitivity_mode=0 && property:sys.boot_completed=1
+    write /sys/devices/virtual/goog_touch_interface/gti.1/screen_protector_mode_enabled 0
+
+on property:persist.vendor.touch_sensitivity_mode=1 && property:sys.boot_completed=1
+    write /sys/devices/virtual/goog_touch_interface/gti.1/screen_protector_mode_enabled 1
+
+# Start the twoshay touch service
+on property:sys.boot_completed=1
+    chown system input /dev/touch_offload
+    chown system input /dev/touch_offload_outer
+    chmod 660 /dev/touch_offload
+    chmod 660 /dev/touch_offload_outer
+    start twoshay
+
+# eSIM
+# Disable bootstrap when bootloader is unlocked in user build
+on property:ro.build.type=user && property:ro.boot.flash.locked=0
+    setprop setupwizard.feature.provisioning_profile_mode false
+
+# Thermal
+# Set "no quiet" thermal config for early hardware revisions on normal boot
+on late-init && property:ro.boot.hardware.revision=PROTO1.0
+    setprop vendor.thermal.config "thermal_info_config_no_quiet.json"
+
+on late-init && property:ro.boot.hardware.revision=PROTO1.1
+    setprop vendor.thermal.config "thermal_info_config_no_quiet.json"
+
+on late-init && property:ro.boot.hardware.revision=EVT1.0
+    setprop vendor.thermal.config "thermal_info_config_no_quiet.json"
+
+# Overwrite default charger mode configs for early hardware revisions
+on property:vendor.thermal.config=thermal_info_config_charge.json && property:ro.boot.hardware.revision=PROTO1.0
+    setprop vendor.thermal.config "thermal_info_config_charge_no_quiet.json"
+
+on property:vendor.thermal.config=thermal_info_config_charge.json && property:ro.boot.hardware.revision=PROTO1.1
+    setprop vendor.thermal.config "thermal_info_config_charge_no_quiet.json"
+
+on property:vendor.thermal.config=thermal_info_config_charge.json && property:ro.boot.hardware.revision=EVT1.0
+    setprop vendor.thermal.config "thermal_info_config_charge_no_quiet.json"
