@@ -11057,7 +11057,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/mtk_remotefsd",
             ],
             shared_libs: [
-                "libclang_rt.hwasan-aarch64-android",
+                "libclang_rt.hwasan",
                 "libcutils",
                 "liblog",
                 "libc++",
@@ -11084,7 +11084,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/mtk_thinmd",
             ],
             shared_libs: [
-                "libclang_rt.hwasan-aarch64-android",
+                "libclang_rt.hwasan",
                 "libbase",
                 "libcutils",
                 "liblog",
