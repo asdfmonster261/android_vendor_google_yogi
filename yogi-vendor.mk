@@ -624,8 +624,8 @@ PRODUCT_PACKAGES += \
     aocx-V3-ndk \
     biometricsuez \
     com.google.edgetpu.tachyon-ndk \
-    com.google.edgetpu_app_service-V10-ndk \
-    com.google.edgetpu_vendor_service-V2-ndk \
+    com.google.edgetpu_app_service-V10-ndk_vendor \
+    com.google.edgetpu_vendor_service-V2-ndk_vendor \
     com.google.hardware.biometrics.parcelable.fingerprint.PressToAuthParcelable-V1-ndk \
     com.google.hardware.biometrics.sidefps.fingerprint-ext-V1-ndk \
     com.google.hardware.pixel.display-V22-ndk \
@@ -731,7 +731,7 @@ PRODUCT_PACKAGES += \
     libmdspeech \
     libmemtrack-pixel \
     libmetrics_logger \
-    libmipc \
+    libmipc_vendor \
     libmnl \
     libmtkconfig \
     libmtkconfigutils \
@@ -740,8 +740,8 @@ PRODUCT_PACKAGES += \
     libmtkmipc-ril \
     libmtknetcap \
     libmtknetutils \
-    libmtkproperty \
-    libmtkrillog \
+    libmtkproperty_vendor \
+    libmtkrillog_vendor \
     libmtkrilutils \
     libmtksysutils \
     libmtktinyxml \
@@ -770,7 +770,7 @@ PRODUCT_PACKAGES += \
     libtachyon_dsp_core \
     libthermal_tflite_wrapper \
     libtouchflow \
-    libtrm \
+    libtrm_vendor \
     libufwriter \
     libusc \
     libusf \
@@ -799,8 +799,8 @@ PRODUCT_PACKAGES += \
     vendor.google.gnss.gnss_manager.logger-V1-ndk \
     vendor.google.google_battery-V5-ndk \
     vendor.google.plat_security-V1-ndk \
-    vendor.google.whitechapel.audio.audioext@4.0 \
-    vendor.google.whitechapel.audio.extension-V8-ndk \
+    vendor.google.whitechapel.audio.audioext@4.0_vendor \
+    vendor.google.whitechapel.audio.extension-V8-ndk_vendor \
     vendor.google.whitechapel.audio.hal.utils.adaptedinfo.repeated_thread \
     vendor.google.whitechapel.audio.hal.utils.adaptedinfo \
     vendor.google.whitechapel.audio.hal.utils.aoc \

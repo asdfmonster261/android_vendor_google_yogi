@@ -1607,7 +1607,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "com.google.edgetpu_app_service-V10-ndk",
+    name: "com.google.edgetpu_app_service-V10-ndk_vendor",
+    stem: "com.google.edgetpu_app_service-V10-ndk",
     owner: "google",
     strip: {
         none: true,
@@ -1632,7 +1633,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "com.google.edgetpu_vendor_service-V2-ndk",
+    name: "com.google.edgetpu_vendor_service-V2-ndk_vendor",
+    stem: "com.google.edgetpu_vendor_service-V2-ndk",
     owner: "google",
     strip: {
         none: true,
@@ -2152,8 +2154,8 @@ cc_prebuilt_library_shared {
                 "android.hardware.gnss-V7-ndk",
                 "vendor.mediatek.hardware.lbs-V1-ndk",
                 "gps.default",
-                "libmipc",
-                "libmtkrillog",
+                "libmipc_vendor",
+                "libmtkrillog_vendor",
                 "vendor.google.gnss.gnss_manager.logger-V1-ndk",
                 "libc++",
                 "libc",
@@ -2260,7 +2262,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/hw/libgnssdbgctrl.so",
             ],
             shared_libs: [
-                "libmipc",
+                "libmipc_vendor",
                 "libcutils",
                 "liblog",
                 "libc++",
@@ -2454,9 +2456,9 @@ cc_prebuilt_library_shared {
                 "libbinder",
                 "libbinder_ndk",
                 "libutils",
-                "libmipc",
-                "libmtkrillog",
-                "libtrm",
+                "libmipc_vendor",
+                "libmtkrillog_vendor",
+                "libtrm_vendor",
                 "libgnsssupl",
                 "vendor.mediatek.hardware.lbs-V1-ndk",
                 "libc++",
@@ -3392,8 +3394,8 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libbase",
-                "com.google.edgetpu_app_service-V10-ndk",
-                "com.google.edgetpu_vendor_service-V2-ndk",
+                "com.google.edgetpu_app_service-V10-ndk_vendor",
+                "com.google.edgetpu_vendor_service-V2-ndk_vendor",
                 "libbinder_ndk",
                 "libcutils",
                 "libutils",
@@ -4311,13 +4313,13 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libgooglerilaudio.so",
             ],
             shared_libs: [
-                "vendor.google.whitechapel.audio.extension-V8-ndk",
+                "vendor.google.whitechapel.audio.extension-V8-ndk_vendor",
                 "libbase",
                 "libbinder_ndk",
                 "libcutils",
                 "liblog",
                 "libutils",
-                "vendor.google.whitechapel.audio.audioext@4.0",
+                "vendor.google.whitechapel.audio.audioext@4.0_vendor",
                 "libhidlbase",
                 "libc++",
                 "libc",
@@ -4651,7 +4653,7 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "libutils",
                 "libsysutils",
-                "libmipc",
+                "libmipc_vendor",
                 "android.hardware.radio.ims.media-V2-ndk",
                 "libc++",
                 "libc",
@@ -4756,8 +4758,8 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmdspeech.so",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -4817,7 +4819,7 @@ cc_prebuilt_library_shared {
                 "libm",
                 "libz",
                 "android.frameworks.stats-V2-ndk",
-                "com.google.edgetpu_app_service-V10-ndk",
+                "com.google.edgetpu_app_service-V10-ndk_vendor",
                 "libutils",
                 "libhidlbase",
                 "libc++",
@@ -4831,7 +4833,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libmipc",
+    name: "libmipc_vendor",
+    stem: "libmipc",
     owner: "google",
     strip: {
         none: true,
@@ -4842,9 +4845,9 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmipc.so",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libtrm",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libtrm_vendor",
+                "libmtkproperty_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -4893,7 +4896,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtkconfig.so",
             ],
             shared_libs: [
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -4943,7 +4946,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtkcutils.so",
             ],
             shared_libs: [
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -4993,11 +4996,11 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtkmipc-ril.so",
             ],
             shared_libs: [
-                "vendor.google.whitechapel.audio.extension-V8-ndk",
+                "vendor.google.whitechapel.audio.extension-V8-ndk_vendor",
                 "libmdspeech",
                 "libril_hallog",
                 "libgooglerilaudio",
-                "vendor.google.whitechapel.audio.audioext@4.0",
+                "vendor.google.whitechapel.audio.audioext@4.0_vendor",
                 "libmtknetcap",
                 "libmtkutils",
                 "librilfusion",
@@ -5008,14 +5011,14 @@ cc_prebuilt_library_shared {
                 "libmtkrilutils",
                 "libcrypto",
                 "libmtkcutils",
-                "libmtkproperty",
-                "libmtkrillog",
+                "libmtkproperty_vendor",
+                "libmtkrillog_vendor",
                 "libmtkconfigutils",
                 "libmtktinyxml",
                 "vendor.mediatek.hardware.netdagent-V1-ndk",
                 "libbinder_ndk",
                 "libbinder",
-                "libmipc",
+                "libmipc_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -5040,7 +5043,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtknetcap.so",
             ],
             shared_libs: [
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libutils",
                 "libc++",
                 "libc",
@@ -5066,8 +5069,8 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtknetutils.so",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -5081,7 +5084,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libmtkproperty",
+    name: "libmtkproperty_vendor",
+    stem: "libmtkproperty",
     owner: "google",
     strip: {
         none: true,
@@ -5092,7 +5096,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtkproperty.so",
             ],
             shared_libs: [
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -5106,7 +5110,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libmtkrillog",
+    name: "libmtkrillog_vendor",
+    stem: "libmtkrillog",
     owner: "google",
     strip: {
         none: true,
@@ -5143,8 +5148,8 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libmtkcutils",
-                "libmtkrillog",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
                 "libratconfig",
                 "libmtkconfigutils",
                 "libmtkutils",
@@ -5173,8 +5178,8 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libmtksysutils.so",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
                 "libmtkcutils",
                 "libc++",
                 "libc",
@@ -5225,8 +5230,8 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libmtkcutils",
-                "libmtkproperty",
-                "libmtkrillog",
+                "libmtkproperty_vendor",
+                "libmtkrillog_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -5591,9 +5596,9 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libmtkutils",
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libmtkcutils",
-                "libmtkproperty",
+                "libmtkproperty_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -5647,10 +5652,10 @@ cc_prebuilt_library_shared {
                 "hardware.google.ril_ext-V2-ndk",
                 "libril_hallog",
                 "libgooglerilmemmonitor",
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libmtkhardware_legacy",
                 "libmtkrilutils",
-                "libmtkproperty",
+                "libmtkproperty_vendor",
                 "libmtkconfigutils",
                 "libbinder",
                 "libutils",
@@ -5933,7 +5938,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libtrm",
+    name: "libtrm_vendor",
+    stem: "libtrm",
     owner: "google",
     strip: {
         none: true,
@@ -5944,8 +5950,8 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libtrm.so",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -6165,10 +6171,10 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libmtkcutils",
-                "libmtkrillog",
+                "libmtkrillog_vendor",
                 "libmtknetcap",
                 "libmtkutils",
-                "libmipc",
+                "libmipc_vendor",
                 "libmnl",
                 "libc++",
                 "libc",
@@ -6740,7 +6746,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "vendor.google.whitechapel.audio.audioext@4.0",
+    name: "vendor.google.whitechapel.audio.audioext@4.0_vendor",
+    stem: "vendor.google.whitechapel.audio.audioext@4.0",
     owner: "google",
     strip: {
         none: true,
@@ -6768,7 +6775,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "vendor.google.whitechapel.audio.extension-V8-ndk",
+    name: "vendor.google.whitechapel.audio.extension-V8-ndk_vendor",
+    stem: "vendor.google.whitechapel.audio.extension-V8-ndk",
     owner: "google",
     strip: {
         none: true,
@@ -8991,7 +8999,7 @@ cc_prebuilt_binary {
                 "libsensorndkbridge",
                 "libaudioaidlranges",
                 "vendor.google.whitechapel.audio_flags",
-                "vendor.google.whitechapel.audio.extension-V8-ndk",
+                "vendor.google.whitechapel.audio.extension-V8-ndk_vendor",
                 "libapexsupport",
                 "libpower",
                 "vendor.google.whitechapel.audio.hal.utils.adaptedinfo.repeated_thread",
@@ -9567,7 +9575,7 @@ cc_prebuilt_binary {
                 "android.hardware.neuralnetworks@1.2",
                 "android.hardware.neuralnetworks@1.3",
                 "android.hardware.power-V2-ndk",
-                "com.google.edgetpu_app_service-V10-ndk",
+                "com.google.edgetpu_app_service-V10-ndk_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -10156,7 +10164,7 @@ cc_prebuilt_binary {
             shared_libs: [
                 "com.google.edgetpu.tachyon-ndk",
                 "android.hardware.power-V2-ndk",
-                "com.google.edgetpu_app_service-V10-ndk",
+                "com.google.edgetpu_app_service-V10-ndk_vendor",
                 "android.hardware.common.fmq-V1-ndk",
                 "android.hardware.npu-V1-ndk",
                 "libtachyon_core",
@@ -10247,7 +10255,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/hw/gnss_dbg_ctrl",
             ],
             shared_libs: [
-                "libmipc",
+                "libmipc_vendor",
                 "libcutils",
                 "liblog",
                 "libc++",
@@ -10553,13 +10561,13 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/hw/mtkfusionrild",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libmtkproperty",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
                 "libmtkcutils",
                 "librilfusion",
                 "libmtkrilutils",
                 "libmtkconfigutils",
-                "libmipc",
+                "libmipc_vendor",
                 "liblog",
                 "libc++",
                 "libc",
@@ -10727,7 +10735,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/hw/vendor.google.edgetpu_vendor_service@1.0-service",
             ],
             shared_libs: [
-                "com.google.edgetpu_vendor_service-V2-ndk",
+                "com.google.edgetpu_vendor_service-V2-ndk_vendor",
                 "libbase",
                 "libcutils",
                 "libbinder",
@@ -11001,7 +11009,7 @@ cc_prebuilt_binary {
                 "lib_snappy",
                 "lib_mtklogformat",
                 "lib_recycle",
-                "libmipc",
+                "libmipc_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -11106,9 +11114,9 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/muxreport",
             ],
             shared_libs: [
-                "libmtkrillog",
-                "libmtkproperty",
-                "libtrm",
+                "libmtkrillog_vendor",
+                "libmtkproperty_vendor",
+                "libtrm_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -11139,8 +11147,8 @@ cc_prebuilt_binary {
                 "libfile_op",
                 "liblog",
                 "libnvram_platform",
-                "libmipc",
-                "libtrm",
+                "libmipc_vendor",
+                "libtrm_vendor",
                 "libc++",
                 "libm",
                 "libdl",
@@ -11330,13 +11338,13 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/shamp",
             ],
             shared_libs: [
-                "libmtkproperty",
+                "libmtkproperty_vendor",
                 "android.hardware.security.keymint-V5-ndk",
                 "android.system.keystore2-V6-ndk",
                 "libcrypto",
                 "libutils",
-                "libmipc",
-                "libmtkrillog",
+                "libmipc_vendor",
+                "libmtkrillog_vendor",
                 "libbinder_ndk",
                 "libcutils",
                 "libjsoncpp",
@@ -11368,13 +11376,13 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/shared_modem_platform",
             ],
             shared_libs: [
-                "libmtkproperty",
+                "libmtkproperty_vendor",
                 "android.hardware.security.keymint-V5-ndk",
                 "android.system.keystore2-V6-ndk",
                 "libcrypto",
                 "libutils",
-                "libmipc",
-                "libmtkrillog",
+                "libmipc_vendor",
+                "libmtkrillog_vendor",
                 "libbinder_ndk",
                 "libcutils",
                 "libjsoncpp",
