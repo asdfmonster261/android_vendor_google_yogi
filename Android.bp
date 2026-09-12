@@ -1709,7 +1709,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "com.google.hardware.pixel.display-V22-ndk",
+    name: "com.google.hardware.pixel.display-V22-ndk_vendor",
+    stem: "com.google.hardware.pixel.display-V22-ndk",
     owner: "google",
     strip: {
         none: true,
@@ -9230,7 +9231,7 @@ cc_prebuilt_binary {
             shared_libs: [
                 "libprotobuf-cpp-full",
                 "libdmabufheap",
-                "com.google.hardware.pixel.display-V22-ndk",
+                "com.google.hardware.pixel.display-V22-ndk_vendor",
                 "libgralloctypes",
                 "libvndksupport",
                 "android.frameworks.stats-V2-ndk",

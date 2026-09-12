@@ -628,7 +628,7 @@ PRODUCT_PACKAGES += \
     com.google.edgetpu_vendor_service-V2-ndk_vendor \
     com.google.hardware.biometrics.parcelable.fingerprint.PressToAuthParcelable-V1-ndk \
     com.google.hardware.biometrics.sidefps.fingerprint-ext-V1-ndk \
-    com.google.hardware.pixel.display-V22-ndk \
+    com.google.hardware.pixel.display-V22-ndk_vendor \
     com.google.input-V8-ndk \
     com.google.pixel.modem_logging.log_files-ndk \
     libEGL_powervr \
