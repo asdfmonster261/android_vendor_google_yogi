@@ -224,6 +224,16 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/fstab.modem:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem \
     vendor/google/yogi/proprietary/vendor/etc/fstab.modem_data:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem_data \
     vendor/google/yogi/proprietary/vendor/etc/fstab.persist:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.persist \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.2g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.2g \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.3g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.3g \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.40p:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.40p \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.4g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.4g \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.50p:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.50p \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.50p-1g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.50p-1g \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.50p-2g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.50p-2g \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.5g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.5g \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.60p:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.60p \
+    vendor/google/yogi/proprietary/vendor/etc/fstab.zram.6g:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram.6g \
     vendor/google/yogi/proprietary/vendor/etc/future_vt_prediction_model.tflite:$(TARGET_COPY_OUT_VENDOR)/etc/future_vt_prediction_model.tflite \
     vendor/google/yogi/proprietary/vendor/etc/gnss/MNL_Config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/MNL_Config.xml \
     vendor/google/yogi/proprietary/vendor/etc/gnss/gnss.cer:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gnss.cer \
@@ -257,6 +267,7 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.usb.gadget-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.usb.gadget-service.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.vibrator-service.cs40l26-rust.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.vibrator-service.cs40l26-rust.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.weaver-service.citadel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.weaver-service.citadel.rc \
+    vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.wifi.supplicant-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.wifi.supplicant-service.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/aocd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/aocd.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/aocxd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/aocxd.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/citadeld.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/citadeld.rc \
@@ -283,6 +294,7 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/init/imsmediahaldaemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/imsmediahaldaemon.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.aoc.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.aoc.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.camera.set-interrupts-ownership.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.camera.set-interrupts-ownership.rc \
+    vendor/google/yogi/proprietary/vendor/etc/init/init.flood.control.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.flood.control.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.gia.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gia.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.gsa.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gsa.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.interrupts.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.interrupts.rc \
@@ -291,6 +303,7 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/init/init.module.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.module.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.pixel-mm-gs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.pixel-mm-gs.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.pixel-perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.pixel-perf.rc \
+    vendor/google/yogi/proprietary/vendor/etc/init/init.pixel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.pixel.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.pixel_irq_load_balancer.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.pixel_irq_load_balancer.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.power-gs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.power-gs.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/init.shared_modem_platform_a.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.shared_modem_platform_a.rc \
@@ -320,6 +333,7 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-dmabuf-deferred-free-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-dmabuf-deferred-free-experiment.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-experiments-recovery.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-experiments-recovery.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-min-gcma-dmabuf-kb-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-min-gcma-dmabuf-kb-experiment.rc \
+    vendor/google/yogi/proprietary/vendor/etc/init/pixel-mm-gki.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-mm-gki.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-pbmprofile-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-pbmprofile-experiment.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-sched-proxy-exec-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-sched-proxy-exec-experiment.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-thermal-symlinks.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-thermal-symlinks.rc \
@@ -537,6 +551,8 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/panel_ctrl_google-iyida_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/panel_ctrl_google-iyida_cal0.pb \
     vendor/google/yogi/proprietary/vendor/etc/panel_ctrl_google-iyidb_cal1.pb:$(TARGET_COPY_OUT_VENDOR)/etc/panel_ctrl_google-iyidb_cal1.pb \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.npu.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.npu.xml \
+    vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.compass.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.strongbox_keystore_v4.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.strongbox_keystore_v4.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.telephony.satellite.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.satellite.xml \
@@ -549,6 +565,8 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json \
     vendor/google/yogi/proprietary/vendor/etc/powervr.ini:$(TARGET_COPY_OUT_VENDOR)/etc/powervr.ini \
     vendor/google/yogi/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
+    vendor/google/yogi/proprietary/vendor/etc/res/images/charger/battery_overheat.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/battery_overheat.png \
+    vendor/google/yogi/proprietary/vendor/etc/res/images/charger/main_font.png:$(TARGET_COPY_OUT_VENDOR)/etc/res/images/charger/main_font.png \
     vendor/google/yogi/proprietary/vendor/etc/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
     vendor/google/yogi/proprietary/vendor/etc/sensors/registry/yogi_common.reg:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/registry/yogi_common.reg \
     vendor/google/yogi/proprietary/vendor/etc/sensors/registry/yogi_dvt.reg:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/registry/yogi_dvt.reg \
@@ -558,7 +576,9 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/sensors/registry/yogi_proto_1_0_led.reg:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/registry/yogi_proto_1_0_led.reg \
     vendor/google/yogi/proprietary/vendor/etc/sensors/registry/yogi_proto_1_1.reg:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/registry/yogi_proto_1_1.reg \
     vendor/google/yogi/proprietary/vendor/etc/sensors/registry/yogi_proto_1_1_old_flam.reg:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/registry/yogi_proto_1_1_old_flam.reg \
+    vendor/google/yogi/proprietary/vendor/etc/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
     vendor/google/yogi/proprietary/vendor/etc/sysconfig/vendor-apex-allowlist-audio-resource.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/vendor-apex-allowlist-audio-resource.xml \
+    vendor/google/yogi/proprietary/vendor/etc/sysconfig/vendor-apex-allowlist-lyric.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/vendor-apex-allowlist-lyric.xml \
     vendor/google/yogi/proprietary/vendor/etc/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json \
     vendor/google/yogi/proprietary/vendor/etc/telephony/satellite_access_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/satellite_access_config.json \
     vendor/google/yogi/proprietary/vendor/etc/telephony/sats2.dat:$(TARGET_COPY_OUT_VENDOR)/etc/telephony/sats2.dat \
@@ -695,11 +715,13 @@ PRODUCT_PACKAGES += \
     libgsc_updater \
     mapper.pixel \
     mtk_lbs_service-impl \
+    sensors.dynamic_sensor_hal \
     vulkan.powervr \
     libIMGegl \
     libMAM_Google_Pixel_Android \
     libNX_Google_Pixel_Android \
     libOpenCL-pixel \
+    libOpenCL \
     libPVROCL \
     libPVRScopeServices \
     libPixelGrallocProperties \
@@ -758,6 +780,7 @@ PRODUCT_PACKAGES += \
     libgpudataproducer \
     libgpuflag_aconfig_rust \
     libgxp \
+    libhidparser \
     libhwc_flags \
     libhwc_xrr_flags \
     libhwjpeg \
@@ -814,13 +837,20 @@ PRODUCT_PACKAGES += \
     libutils-default \
     libvadprocessor \
     libwlcproto_aidl-default \
+    libwpa_client \
     libwpfa \
     nfc_nci.st21nfc.base \
     pixel_stateresidency_provider_aidl_interface-ndk \
     pixelatoms-cpp \
     pixelstats_flags_c_lib \
     sensors.usf.v2 \
+    libbundleaidl \
+    libdownmixaidl \
+    libdynamicsprocessingaidl \
+    libloudnessenhanceraidl \
     libpixelhapticgeneratoraidl \
+    libreverbaidl \
+    libvisualizeraidl \
     thermal-budget-interface-ndk \
     usf_v2_api \
     usf_v2_spectral_api \
@@ -898,6 +928,7 @@ PRODUCT_PACKAGES += \
     com.google.edgetpu.tachyon-service.xml \
     drm_hwc3.xml \
     fingerprint-goodix.xml \
+    flood_control.xml \
     gnss-manager.xml \
     manifest_allocator_aidl.xml \
     manifest_aocx.xml \
@@ -950,6 +981,7 @@ PRODUCT_PACKAGES += \
     dump_tpu \
     dump_trusty \
     dump_uwb \
+    flood.control.hal \
     fwtp_tool \
     gia \
     gpuflag \
@@ -1013,6 +1045,7 @@ PRODUCT_PACKAGES += \
     insmod \
     md_rfs \
     mdl_coll \
+    misc_writer \
     modem_logging \
     mtk_remotefsd \
     mtk_thinmd \
@@ -1023,6 +1056,7 @@ PRODUCT_PACKAGES += \
     pixel_irq_load_balancer \
     pixel_postinstall_vendor \
     pixelstats-vendor \
+    rebalance_interrupts-vendor \
     sap_log \
     sendhint \
     set_fg_model \
@@ -1031,6 +1065,10 @@ PRODUCT_PACKAGES += \
     sscoredump \
     storage_init \
     storage_intelligence \
+    storageproxyd \
+    trusty_apploader \
     trusty_metricsd \
     twoshay \
+    vndservice \
+    vndservicemanager \
     wl
