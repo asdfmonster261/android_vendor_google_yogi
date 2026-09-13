@@ -47,17 +47,22 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2026.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2026.xml \
     vendor/google/yogi/proprietary/product/etc/sysconfig/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml \
     vendor/google/yogi/proprietary/product/etc/sysconfig/satellite_sos.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/satellite_sos.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/default-permissions/default-permissions-euiccpixel.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/default-permissions/default-permissions-euiccpixel.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.hotwordenrollment.common.util.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.omadm.radioconfig.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.omadm.radioconfig.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.android.camera.extensions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.camera.extensions.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.android.camerax.extensions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.camerax.extensions.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.android.modem.pms.lib.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.modem.pms.lib.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.euiccpixel.permissions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.euiccpixel.permissions.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.euiccpixel.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.euiccpixel.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.input.gia.giaservicemanager.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.input.gia.giaservicemanager.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.pixel.camera.connectivity.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.connectivity.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/google-ril.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/google-ril.xml \
-    vendor/google/yogi/proprietary/system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml \
+    vendor/google/yogi/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_25.up:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_25.up \
+    vendor/google/yogi/proprietary/system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1.img:$(TARGET_COPY_OUT_SYSTEM_EXT)/priv-app/EuiccSupportPixel-P23/esim-full-v1.img
 
 PRODUCT_PACKAGES += \
     com.google.edgetpu_app_service-V10-ndk \
@@ -74,7 +79,12 @@ PRODUCT_PACKAGES += \
     libtrm \
     vendor.google.whitechapel.audio.audioext@4.0 \
     vendor.google.whitechapel.audio.extension-V8-ndk \
+    EuiccSupportPixelOverlay \
     VZWAPNLib \
+    EuiccGoogle \
+    EuiccGoogleOverlay \
+    EuiccSupportPixel-P23 \
+    EuiccSupportPixelPermissions \
     com.google.android.dialer.support \
     RadioConfigLib \
     com.android.hotwordenrollment.common.util \
