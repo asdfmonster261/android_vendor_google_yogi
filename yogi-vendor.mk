@@ -5,18 +5,6 @@
 PRODUCT_SOONG_NAMESPACES += \
     vendor/google/yogi
 
-PRODUCT_COPY_FILES += \
-    vendor/google/yogi/proprietary/odm/etc/build.prop:$(TARGET_COPY_OUT_ODM)/etc/build.prop \
-    vendor/google/yogi/proprietary/odm/etc/group:$(TARGET_COPY_OUT_ODM)/etc/group \
-    vendor/google/yogi/proprietary/odm/etc/passwd:$(TARGET_COPY_OUT_ODM)/etc/passwd \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_file_contexts:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_file_contexts \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_hwservice_contexts:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_hwservice_contexts \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_mac_permissions.xml:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_mac_permissions.xml \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_property_contexts:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_property_contexts \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_seapp_contexts:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_seapp_contexts \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_sepolicy.cil:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_sepolicy.cil \
-    vendor/google/yogi/proprietary/odm/etc/selinux/odm_service_contexts:$(TARGET_COPY_OUT_ODM)/etc/selinux/odm_service_contexts
-
 PRODUCT_PACKAGES += \
     com.google.edgetpu_app_service-V10-ndk \
     com.google.edgetpu_vendor_service-V2-ndk \
@@ -43,6 +31,7 @@ PRODUCT_PACKAGES += \
     userdata_alias_remove
 
 PRODUCT_COPY_FILES += \
+    vendor/google/yogi/proprietary/vendor/bin/thermal_symlinks:$(TARGET_COPY_OUT_VENDOR)/bin/thermal_symlinks \
     vendor/google/yogi/proprietary/vendor/etc/Khronos/OpenCL/vendors/IMG.icd:$(TARGET_COPY_OUT_VENDOR)/etc/Khronos/OpenCL/vendors/IMG.icd \
     vendor/google/yogi/proprietary/vendor/etc/aidl/le_audio/aidl_audio_set_configurations.json:$(TARGET_COPY_OUT_VENDOR)/etc/aidl/le_audio/aidl_audio_set_configurations.json \
     vendor/google/yogi/proprietary/vendor/etc/aidl/le_audio/aidl_audio_set_scenarios.json:$(TARGET_COPY_OUT_VENDOR)/etc/aidl/le_audio/aidl_audio_set_scenarios.json \
@@ -248,7 +237,6 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/init/mtk_thinmd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/mtk_thinmd.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/mtkrild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/mtkrild.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/muxreport.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/muxreport.rc \
-    vendor/google/yogi/proprietary/vendor/etc/init/nfc2-service-default.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/nfc2-service-default.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/nvram_daemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/nvram_daemon.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pcie_power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pcie_power.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/pixel-bgtasks-experiment.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/pixel-bgtasks-experiment.rc \
@@ -474,7 +462,6 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.npu.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.npu.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.strongbox_keystore_v4.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.strongbox_keystore_v4.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
-    vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.telephony.ims.prebuilt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.prebuilt.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.telephony.satellite.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.satellite.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/android.hardware.uwb.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.uwb.xml \
     vendor/google/yogi/proprietary/vendor/etc/permissions/com.google.android.camera.experimental2026.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.google.android.camera.experimental2026.xml \
@@ -585,41 +572,20 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/firmware/u100FwUpdate.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/u100FwUpdate.bin \
     vendor/google/yogi/proprietary/vendor/firmware/u100FwUpdate_test.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/u100FwUpdate_test.bin \
     vendor/google/yogi/proprietary/vendor/firmware/usb_phy_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/usb_phy_fw.bin \
-    vendor/google/yogi/proprietary/vendor/firmware/usb_phy_fw_2.27.0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/usb_phy_fw_2.27.0.bin \
-    vendor/google/yogi/proprietary/vendor/framework/oat/arm64/com.google.android.camera.experimental2026.odex:$(TARGET_COPY_OUT_VENDOR)/framework/oat/arm64/com.google.android.camera.experimental2026.odex \
-    vendor/google/yogi/proprietary/vendor/framework/oat/arm64/com.google.android.camera.experimental2026.vdex:$(TARGET_COPY_OUT_VENDOR)/framework/oat/arm64/com.google.android.camera.experimental2026.vdex
+    vendor/google/yogi/proprietary/vendor/firmware/usb_phy_fw_2.27.0.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/usb_phy_fw_2.27.0.bin
 
 PRODUCT_PACKAGES += \
     aconfig_gpu_flags_c_lib \
     aconfig_gpu_img_flags_c_lib \
     aconfig_gsc_flags_c_lib \
     android.hardware.authsecret-impl.nos \
-    android.hardware.gnss-V7-ndk \
-    android.hardware.light-V3-ndk \
-    android.hardware.nfc-V2-ndk \
-    android.hardware.npu-V1-ndk \
     android.hardware.oemlock-impl.nos \
     android.hardware.power.stats-impl.malibu \
     android.hardware.power.stats-impl.pixel \
-    android.hardware.power@1.0 \
-    android.hardware.power@1.1 \
-    android.hardware.power@1.2 \
-    android.hardware.radio-V5-ndk \
-    android.hardware.radio.config-V5-ndk \
-    android.hardware.radio.data-V5-ndk \
-    android.hardware.radio.ims-V4-ndk \
-    android.hardware.radio.ims.media-V2-ndk \
-    android.hardware.radio.messaging-V5-ndk \
-    android.hardware.radio.modem-V5-ndk \
-    android.hardware.radio.network-V5-ndk \
-    android.hardware.radio.sim-V5-ndk \
-    android.hardware.radio.voice-V5-ndk \
-    android.hardware.security.keymint-V4-ndk \
     android.hardware.security.keymint-impl.nos \
     android.hardware.weaver-bridge.nos \
     android.hardware.weaver-impl.nos \
     android.hardware.weaver2-impl.nos \
-    android.system.keystore2-V6-ndk \
     aoc_aconfig_flags_c_lib \
     aocx-V3-ndk \
     biometricsuez \
@@ -639,10 +605,8 @@ PRODUCT_PACKAGES += \
     goodix_sfps_suez \
     goodixbinderservice-aidl-V1-ndk \
     goodixfingerprint \
-    google.hardware.image-V1-ndk \
     gxp_metrics_logger \
     gxp_telemetry_reader \
-    hardware.google.ril_ext-V2-ndk \
     android.hardware.gnss-impl-mediatek \
     gps.default \
     gsc_image_tools \
@@ -726,13 +690,11 @@ PRODUCT_PACKAGES += \
     libimgcodec_store \
     libimsmediahalproxy_mtk \
     libion_google \
-    libkeymint_support_V4 \
     libmahalcontroller \
     libmdspeech \
     libmemtrack-pixel \
     libmetrics_logger \
     libmipc_vendor \
-    libmnl \
     libmtkconfig \
     libmtkconfigutils \
     libmtkcutils \
@@ -751,7 +713,6 @@ PRODUCT_PACKAGES += \
     libnvram_platform \
     libnvram_sec \
     liboemcrypto \
-    libperfetto_c \
     libperfmgr \
     libphone_booth_model_darwinn \
     libpixelatoms_defs \
@@ -765,7 +726,6 @@ PRODUCT_PACKAGES += \
     libspeechenhancer \
     libsrv_um \
     libstreset26 \
-    libsysutils \
     libtachyon_core \
     libtachyon_dsp_core \
     libthermal_tflite_wrapper \
@@ -775,7 +735,6 @@ PRODUCT_PACKAGES += \
     libusc \
     libusf \
     libutils-default \
-    libutilscallstack \
     libvadprocessor \
     libwlcproto_aidl-default \
     libwpfa \
@@ -855,7 +814,6 @@ PRODUCT_PACKAGES += \
     android.hardware.samsung.uwb-service.xml \
     android.hardware.security.keymint-service-v4.citadel.xml \
     android.hardware.security.sharesecret-service.citadel.xml \
-    android.hardware.thermal-service.pixel.xml \
     android.hardware.usb-service.xml \
     android.hardware.usb.gadget-service.xml \
     android.hardware.vibrator-service.cs40l26-rust.xml \
@@ -863,7 +821,6 @@ PRODUCT_PACKAGES += \
     com.google.edgetpu.tachyon-service.xml \
     drm_hwc3.xml \
     fingerprint-goodix.xml \
-    gnss-default.xml \
     gnss-manager.xml \
     manifest_allocator_aidl.xml \
     manifest_aocx.xml \
@@ -874,8 +831,6 @@ PRODUCT_PACKAGES += \
     memtrack.xml \
     modem_logging.xml \
     mtk_lbs_service.xml \
-    nfc2-service-default.xml \
-    pixel-display-default.xml \
     pixel-display-secondary.xml \
     shared_modem_platform.xml \
     vendor.dolby.media.c2-default-service.xml \
@@ -999,7 +954,6 @@ PRODUCT_PACKAGES += \
     sscoredump \
     storage_init \
     storage_intelligence \
-    thermal_symlinks \
     trusty_metricsd \
     twoshay \
     wl
