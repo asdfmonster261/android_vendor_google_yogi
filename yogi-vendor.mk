@@ -5,6 +5,60 @@
 PRODUCT_SOONG_NAMESPACES += \
     vendor/google/yogi
 
+PRODUCT_COPY_FILES += \
+    vendor/google/yogi/proprietary/product/etc/permissions/androidx.camera.extensions.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/androidx.camera.extensions.impl.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.google.android.apps.stargate.support.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.stargate.support.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.google.android.dialer.support.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.dialer.support.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.google.pixel.camera.connectivity.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.connectivity.impl.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.google.pixel.camera.services.cameraidremapper.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.services.cameraidremapper.impl.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.impl.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.verizon.apn.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.verizon.apn.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/features-verizon.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/features-verizon.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/adaptivecharging.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/adaptivecharging.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/ambient_data.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/ambient_data.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/contextual_search.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/contextual_search.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/dreamliner.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/dreamliner.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/felica_feature.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/felica_feature.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/game_service.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/game_service.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/gemini_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/gemini_experience.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/gemini_intelligence_device.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/gemini_intelligence_device.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/google_build.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_build.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/google_fi.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_fi.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/google_xr_projected.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_xr_projected.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/nexus.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/nexus.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/nga.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/nga.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/nowplaying_app_26q1.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/nowplaying_app_26q1.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2017.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2017.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2018.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2018.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2019.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2019.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2019_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2019_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2020.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2020_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2021.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2021.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2021_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2021_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2022.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2022.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2022_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2022_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2023.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2023.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2023_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2023_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2024.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2024.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2024_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2024_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2025.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2025.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2025_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2025_midyear.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/pixel_experience_2026.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2026.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml \
+    vendor/google/yogi/proprietary/product/etc/sysconfig/satellite_sos.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/satellite_sos.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.hotwordenrollment.common.util.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.omadm.radioconfig.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.omadm.radioconfig.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.android.camera.extensions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.camera.extensions.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.android.camerax.extensions.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.camerax.extensions.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.android.modem.pms.lib.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.android.modem.pms.lib.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.input.gia.giaservicemanager.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.input.gia.giaservicemanager.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.pixel.camera.connectivity.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.connectivity.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/google-ril.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/google-ril.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
+
 PRODUCT_PACKAGES += \
     com.google.edgetpu_app_service-V10-ndk \
     com.google.edgetpu_vendor_service-V2-ndk \
@@ -20,6 +74,19 @@ PRODUCT_PACKAGES += \
     libtrm \
     vendor.google.whitechapel.audio.audioext@4.0 \
     vendor.google.whitechapel.audio.extension-V8-ndk \
+    VZWAPNLib \
+    com.google.android.dialer.support \
+    RadioConfigLib \
+    com.android.hotwordenrollment.common.util \
+    com.google.android.camera.extensions \
+    com.google.android.camerax.extensions \
+    com.google.android.modem.pms.lib \
+    com.google.input.gia.giaservicemanager \
+    com.google.pixel.camera.connectivity \
+    com.google.pixel.camera.services.cameraidremapper \
+    com.google.pixel.camera.services.lyricconfigprovider \
+    google-ril \
+    org.carconnectivity.android.digitalkey.timesync \
     backup_ota_log \
     bluetooth_gci \
     gs_watchdogd \
