@@ -1389,6 +1389,34 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "com.google.hardware.pixel.display-V15-ndk_vendor",
+    stem: "com.google.hardware.pixel.display-V15-ndk",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/com.google.hardware.pixel.display-V15-ndk.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "android.hardware.graphics.common-V7-ndk",
+                "android.hardware.common-V2-ndk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "com.google.hardware.pixel.display-V22-ndk_vendor",
     stem: "com.google.hardware.pixel.display-V22-ndk",
     owner: "google",
@@ -1695,6 +1723,34 @@ cc_prebuilt_library_shared {
                 "liblog",
                 "libbinder",
                 "libutils",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "google.hardware.image-V1-ndk_vendor",
+    stem: "google.hardware.image-V1-ndk",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/google.hardware.image-V1-ndk.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "libnativewindow",
+                "android.hardware.graphics.common-V7-ndk",
                 "libc++",
                 "libc",
                 "libm",
@@ -2403,7 +2459,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libvndksupport",
-                "pixel-power-ext-V1-ndk",
+                "pixel-power-ext-V1-ndk_vendor",
                 "android.hardware.graphics.mapper@4.0",
                 "android.hardware.graphics.allocator-V2-ndk",
                 "libbinder_ndk",
@@ -2439,7 +2495,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/lib_jpg_encoder.so",
             ],
             shared_libs: [
-                "google.hardware.image-V1-ndk",
+                "google.hardware.image-V1-ndk_vendor",
                 "libbinder_ndk",
                 "libnativewindow",
                 "liblog",
@@ -3340,7 +3396,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libbinder_ndk",
-                "libmedia_ecoservice",
+                "libmedia_ecoservice_vendor",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
                 "libcodec2_hal_common",
@@ -3434,7 +3490,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libbinder_ndk",
-                "libmedia_ecoservice",
+                "libmedia_ecoservice_vendor",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
                 "libcodec2_hal_common",
@@ -3567,7 +3623,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libbinder_ndk",
-                "libmedia_ecoservice",
+                "libmedia_ecoservice_vendor",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
                 "libcodec2_hal_common",
@@ -3723,7 +3779,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libbinder_ndk",
-                "libmedia_ecoservice",
+                "libmedia_ecoservice_vendor",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
                 "libcodec2_hal_common",
@@ -4239,7 +4295,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libimgcodec_comp.so",
             ],
             shared_libs: [
-                "google.hardware.image-V1-ndk",
+                "google.hardware.image-V1-ndk_vendor",
                 "libbinder_ndk",
                 "libnativewindow",
                 "libui",
@@ -4326,7 +4382,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libimgcodec_store.so",
             ],
             shared_libs: [
-                "google.hardware.image-V1-ndk",
+                "google.hardware.image-V1-ndk_vendor",
                 "android.hardware.common-V2-ndk",
                 "libbinder_ndk",
                 "libnativewindow",
@@ -4446,6 +4502,36 @@ cc_prebuilt_library_shared {
             shared_libs: [
                 "libmtkrillog_vendor",
                 "libmtkproperty_vendor",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmedia_ecoservice_vendor",
+    stem: "libmedia_ecoservice",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libmedia_ecoservice.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "libcutils",
+                "liblog",
+                "libutils",
+                "libcodec2_hidl@1.0",
                 "libc++",
                 "libc",
                 "libm",
@@ -5830,6 +5916,58 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "pixel-power-ext-V1-ndk_vendor",
+    stem: "pixel-power-ext-V1-ndk",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/pixel-power-ext-V1-ndk.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "pixel-power-ext-V2-ndk_vendor",
+    stem: "pixel-power-ext-V2-ndk",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/pixel-power-ext-V2-ndk.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "pixel_stateresidency_provider_aidl_interface-ndk",
     owner: "google",
     strip: {
@@ -5927,7 +6065,7 @@ cc_prebuilt_library_shared {
                 "android.hardware.sensors@2.1",
                 "android.hardware.sensors@2.0-ScopedWakelock",
                 "android.hardware.thermal-V1-ndk",
-                "com.google.hardware.pixel.display-V15-ndk",
+                "com.google.hardware.pixel.display-V15-ndk_vendor",
                 "libbase",
                 "libbinder_ndk",
                 "libcutils",
@@ -6258,7 +6396,7 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "libbase",
                 "libbinder_ndk",
-                "com.google.hardware.pixel.display-V15-ndk",
+                "com.google.hardware.pixel.display-V15-ndk_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -7868,15 +8006,6 @@ prebuilt_etc_xml {
 }
 
 prebuilt_etc_xml {
-    name: "pixel-display-secondary.xml",
-    owner: "google",
-    src: "proprietary/vendor/etc/vintf/manifest/pixel-display-secondary.xml",
-    filename_from_src: true,
-    sub_dir: "vintf/manifest",
-    soc_specific: true,
-}
-
-prebuilt_etc_xml {
     name: "shared_modem_platform.xml",
     owner: "google",
     src: "proprietary/vendor/etc/vintf/manifest/shared_modem_platform.xml",
@@ -8960,7 +9089,7 @@ cc_prebuilt_binary {
                 "android.hardware.power-V1-ndk",
                 "android.hardware.thermal@2.0",
                 "com.google.hardware.biometrics.parcelable.fingerprint.PressToAuthParcelable-V1-ndk",
-                "pixel-power-ext-V1-ndk",
+                "pixel-power-ext-V1-ndk_vendor",
                 "com.google.hardware.biometrics.sidefps.fingerprint-ext-V1-ndk",
                 "goodix_sfps_suez",
                 "libc++",
@@ -9067,7 +9196,7 @@ cc_prebuilt_binary {
                 "libgralloctypes",
                 "libvndksupport",
                 "android.frameworks.stats-V2-ndk",
-                "pixel-power-ext-V1-ndk",
+                "pixel-power-ext-V1-ndk_vendor",
                 "android.hardware.power-V2-ndk",
                 "android.hardware.thermal-V3-ndk",
                 "libperfetto_c",
@@ -9513,7 +9642,7 @@ cc_prebuilt_binary {
                 "libprocessgroup",
                 "libprotobuf-cpp-lite",
                 "libjsoncpp",
-                "pixel-power-ext-V2-ndk",
+                "pixel-power-ext-V2-ndk_vendor",
                 "android.frameworks.stats-V2-ndk",
                 "android.hardware.common.fmq-V1-ndk",
                 "libfmq",
@@ -9692,7 +9821,7 @@ cc_prebuilt_binary {
                 "android.hardware.power-V1-ndk",
                 "android.hardware.thermal-V3-ndk",
                 "thermal-budget-interface-ndk",
-                "pixel-power-ext-V2-ndk",
+                "pixel-power-ext-V2-ndk_vendor",
                 "pixelatoms-cpp",
                 "libc++",
                 "libc",
@@ -10211,7 +10340,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/hw/google.hardware.image-V1-service",
             ],
             shared_libs: [
-                "google.hardware.image-V1-ndk",
+                "google.hardware.image-V1-ndk_vendor",
                 "android.hardware.common-V2-ndk",
                 "libbinder_ndk",
                 "libutils",
@@ -10246,7 +10375,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/hw/google.hardware.media.c2@3.0-service",
             ],
             shared_libs: [
-                "libmedia_ecoservice",
+                "libmedia_ecoservice_vendor",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
                 "libbase",
@@ -11103,32 +11232,6 @@ cc_prebuilt_binary {
 }
 
 cc_prebuilt_binary {
-    name: "rebalance_interrupts-vendor",
-    owner: "google",
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/bin/rebalance_interrupts-vendor",
-            ],
-            shared_libs: [
-                "libbase",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    strip: {
-        none: true,
-    },
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_binary {
     name: "sap_log",
     owner: "google",
     target: {
@@ -11171,7 +11274,7 @@ cc_prebuilt_binary {
                 "liblog",
                 "libutils",
                 "libbinder_ndk",
-                "pixel-power-ext-V2-ndk",
+                "pixel-power-ext-V2-ndk_vendor",
                 "libc++",
                 "libc",
                 "libm",
@@ -11475,36 +11578,6 @@ cc_prebuilt_binary {
                 "libcutils",
                 "libutils",
                 "libbinder",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    strip: {
-        none: true,
-    },
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_binary {
-    name: "vndservicemanager",
-    owner: "google",
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/bin/vndservicemanager",
-            ],
-            shared_libs: [
-                "libbase",
-                "libcutils",
-                "liblog",
-                "libselinux",
-                "libbinder",
-                "libutils",
                 "libc++",
                 "libc",
                 "libm",

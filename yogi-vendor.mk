@@ -256,6 +256,7 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.health-service.malibu.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.health-service.malibu.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.input.processor-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.input.processor-service.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.neuralnetworks@service-darwinn-aidl.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.neuralnetworks@service-darwinn-aidl.rc \
+    vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.nfc2-service.st.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.nfc2-service.st.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.oemlock-service.citadel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.oemlock-service.citadel.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.power-service.pixel-libperfmgr.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.power-service.pixel-libperfmgr.rc \
     vendor/google/yogi/proprietary/vendor/etc/init/android.hardware.power.stats-service.pixel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.power.stats-service.pixel.rc \
@@ -691,6 +692,7 @@ PRODUCT_PACKAGES += \
     com.google.edgetpu_vendor_service-V2-ndk_vendor \
     com.google.hardware.biometrics.parcelable.fingerprint.PressToAuthParcelable-V1-ndk \
     com.google.hardware.biometrics.sidefps.fingerprint-ext-V1-ndk \
+    com.google.hardware.pixel.display-V15-ndk_vendor \
     com.google.hardware.pixel.display-V22-ndk_vendor \
     com.google.input-V8-ndk \
     com.google.pixel.modem_logging.log_files-ndk \
@@ -702,6 +704,7 @@ PRODUCT_PACKAGES += \
     goodix_sfps_suez \
     goodixbinderservice-aidl-V1-ndk \
     goodixfingerprint \
+    google.hardware.image-V1-ndk_vendor \
     gxp_metrics_logger \
     gxp_telemetry_reader \
     android.hardware.gnss-impl-mediatek \
@@ -792,6 +795,7 @@ PRODUCT_PACKAGES += \
     libion_google \
     libmahalcontroller \
     libmdspeech \
+    libmedia_ecoservice_vendor \
     libmemtrack-pixel \
     libmetrics_logger \
     libmipc_vendor \
@@ -840,6 +844,8 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     libwpfa \
     nfc_nci.st21nfc.base \
+    pixel-power-ext-V1-ndk_vendor \
+    pixel-power-ext-V2-ndk_vendor \
     pixel_stateresidency_provider_aidl_interface-ndk \
     pixelatoms-cpp \
     pixelstats_flags_c_lib \
@@ -939,7 +945,6 @@ PRODUCT_PACKAGES += \
     memtrack.xml \
     modem_logging.xml \
     mtk_lbs_service.xml \
-    pixel-display-secondary.xml \
     shared_modem_platform.xml \
     vendor.dolby.media.c2-default-service.xml \
     vendor.google.ambience_hub-default.xml \
@@ -1056,7 +1061,6 @@ PRODUCT_PACKAGES += \
     pixel_irq_load_balancer \
     pixel_postinstall_vendor \
     pixelstats-vendor \
-    rebalance_interrupts-vendor \
     sap_log \
     sendhint \
     set_fg_model \
@@ -1070,5 +1074,4 @@ PRODUCT_PACKAGES += \
     trusty_metricsd \
     twoshay \
     vndservice \
-    vndservicemanager \
     wl
