@@ -1819,6 +1819,32 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "hardware.google.ril_ext-V2-ndk_vendor",
+    stem: "hardware.google.ril_ext-V2-ndk",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/hardware.google.ril_ext-V2-ndk.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "android.hardware.gnss-impl-mediatek",
     owner: "google",
     strip: {
@@ -5373,7 +5399,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/librilfusion.so",
             ],
             shared_libs: [
-                "hardware.google.ril_ext-V2-ndk",
+                "hardware.google.ril_ext-V2-ndk_vendor",
                 "libril_hallog",
                 "libgooglerilmemmonitor",
                 "libmtkrillog_vendor",

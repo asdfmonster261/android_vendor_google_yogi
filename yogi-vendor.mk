@@ -707,6 +707,7 @@ PRODUCT_PACKAGES += \
     google.hardware.image-V1-ndk_vendor \
     gxp_metrics_logger \
     gxp_telemetry_reader \
+    hardware.google.ril_ext-V2-ndk_vendor \
     android.hardware.gnss-impl-mediatek \
     gps.default \
     gsc_image_tools \
