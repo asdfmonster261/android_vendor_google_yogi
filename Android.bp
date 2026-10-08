@@ -890,31 +890,6 @@ cc_prebuilt_binary {
     system_ext_specific: true,
 }
 
-cc_prebuilt_binary {
-    name: "userdata_alias_remove",
-    owner: "google",
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/system_ext/bin/userdata_alias_remove",
-            ],
-            shared_libs: [
-                "libbase",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    strip: {
-        none: true,
-    },
-    prefer: true,
-    system_ext_specific: true,
-}
-
 cc_prebuilt_library_shared {
     name: "aconfig_gpu_flags_c_lib",
     owner: "google",
