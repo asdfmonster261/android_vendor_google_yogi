@@ -675,8 +675,13 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/product/etc/sysconfig/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml \
     vendor/google/yogi/proprietary/product/etc/sysconfig/satellite_sos.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/satellite_sos.xml \
     vendor/google/yogi/proprietary/system_ext/etc/default-permissions/default-permissions-euiccpixel.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/default-permissions/default-permissions-euiccpixel.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/init/android.hidl.allocator@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/android.hidl.allocator@1.0-service.rc \
+    vendor/google/yogi/proprietary/system_ext/etc/init/bluetooth_gci.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/bluetooth_gci.rc \
+    vendor/google/yogi/proprietary/system_ext/etc/init/init.gs_watchdogd.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.gs_watchdogd.rc \
     vendor/google/yogi/proprietary/system_ext/etc/init/init.pms.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.pms.rc \
+    vendor/google/yogi/proprietary/system_ext/etc/init/userdata.alias.remove.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/userdata.alias.remove.rc \
     vendor/google/yogi/proprietary/system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc \
+    vendor/google/yogi/proprietary/system_ext/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.hotwordenrollment.common.util.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.omadm.radioconfig.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.omadm.radioconfig.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/com.android.qns.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.qns.xml \
@@ -745,6 +750,7 @@ PRODUCT_PACKAGES += \
     com.google.pixel.camera.services.lyricconfigprovider \
     google-ril \
     org.carconnectivity.android.digitalkey.timesync \
+    android.hidl.allocator@1.0-service.xml \
     vendor.google.edgetpu_app_service@1.0-service.xml \
     backup_ota_log \
     bluetooth_gci \

@@ -707,6 +707,15 @@ dex_import {
 }
 
 prebuilt_etc_xml {
+    name: "android.hidl.allocator@1.0-service.xml",
+    owner: "google",
+    src: "proprietary/system_ext/etc/vintf/manifest/android.hidl.allocator@1.0-service.xml",
+    filename_from_src: true,
+    sub_dir: "vintf/manifest",
+    system_ext_specific: true,
+}
+
+prebuilt_etc_xml {
     name: "vendor.google.edgetpu_app_service@1.0-service.xml",
     owner: "google",
     src: "proprietary/system_ext/etc/vintf/manifest/vendor.google.edgetpu_app_service@1.0-service.xml",
