@@ -867,7 +867,6 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/vendor/etc/ecc_list.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ecc_list.xml \
     vendor/google/yogi/proprietary/vendor/etc/edgetpu/custom_kernel.pbtxt:$(TARGET_COPY_OUT_VENDOR)/etc/edgetpu/custom_kernel.pbtxt \
     vendor/google/yogi/proprietary/vendor/etc/fstab.gem5:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.gem5 \
-    vendor/google/yogi/proprietary/vendor/etc/fstab.malibu:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.malibu \
     vendor/google/yogi/proprietary/vendor/etc/fstab.malibu-fips:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.malibu-fips \
     vendor/google/yogi/proprietary/vendor/etc/fstab.modem:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem \
     vendor/google/yogi/proprietary/vendor/etc/fstab.modem_data:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.modem_data \
