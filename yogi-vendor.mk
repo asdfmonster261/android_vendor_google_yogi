@@ -698,6 +698,7 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/privapp-permissions-google-se.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-google-se.xml \
     vendor/google/yogi/proprietary/system_ext/etc/permissions/privapp-permlist_com.google.android.grilservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permlist_com.google.android.grilservice.xml \
+    vendor/google/yogi/proprietary/system_ext/etc/permissions/privapp-permlist_com.google.location.lppe.main.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permlist_com.google.location.lppe.main.xml \
     vendor/google/yogi/proprietary/system_ext/etc/sysconfig/preinstalled-packages-gril.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/preinstalled-packages-gril.xml \
     vendor/google/yogi/proprietary/system_ext/etc/sysconfig/preinstalled-packages-pixel-modem-service.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/preinstalled-packages-pixel-modem-service.xml \
     vendor/google/yogi/proprietary/system_ext/etc/sysconfig/preinstalled-packages-pixelimsmedia.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/preinstalled-packages-pixelimsmedia.xml \
@@ -729,6 +730,7 @@ PRODUCT_PACKAGES += \
     EuiccGoogleOverlay \
     EuiccSupportPixel-P23 \
     EuiccSupportPixelPermissions \
+    LPPeService \
     PixelImsMediaService \
     PixelModemService \
     PixelQualifiedNetworksService \
