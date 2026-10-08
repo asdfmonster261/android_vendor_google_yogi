@@ -1,0 +1,10 @@
+on post-fs-data
+    mkdir /data/vendor/radio/pms 0777 radio radio
+    mkdir /data/vendor/radio/pms/.tmp 0777 radio radio
+    mkdir /data/vendor/radio/pms/sysprop 0777 radio radio
+
+on property:persist.vendor.verbose_logging_enabled=* && property:ro.debuggable=0
+    setprop persist.vendor.sys.modem.logging.enable ${persist.vendor.verbose_logging_enabled}
+on property:persist.vendor.sys.modem.logging.enable=*
+    write /data/vendor/radio/pms/sysprop/persist.vendor.sys.modem.logging.enable ${persist.vendor.sys.modem.logging.enable}
+
