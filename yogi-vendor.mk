@@ -726,6 +726,7 @@ PRODUCT_PACKAGES += \
     VZWAPNLib \
     CarrierSettings \
     EuiccGoogle \
+    WfcActivation \
     CarrierSetup \
     EuiccGoogleOverlay \
     EuiccSupportPixel-P23 \

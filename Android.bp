@@ -465,6 +465,19 @@ android_app_import {
 }
 
 android_app_import {
+    name: "WfcActivation",
+    owner: "google",
+    apk: "proprietary/product/priv-app/WfcActivation/WfcActivation.apk",
+    preprocessed: true,
+    presigned: true,
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+    product_specific: true,
+}
+
+android_app_import {
     name: "CarrierSetup",
     owner: "google",
     apk: "proprietary/system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
