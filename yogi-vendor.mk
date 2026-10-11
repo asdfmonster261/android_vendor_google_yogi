@@ -632,8 +632,10 @@ PRODUCT_COPY_FILES += \
     vendor/google/yogi/proprietary/product/etc/CarrierSettings/ztar_us.pb:$(TARGET_COPY_OUT_PRODUCT)/etc/CarrierSettings/ztar_us.pb
 
 PRODUCT_COPY_FILES += \
+    vendor/google/yogi/proprietary/product/etc/permissions/android.hardware.telephony.satellite.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.satellite.xml \
     vendor/google/yogi/proprietary/product/etc/permissions/androidx.camera.extensions.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/androidx.camera.extensions.impl.xml \
     vendor/google/yogi/proprietary/product/etc/permissions/com.google.android.apps.stargate.support.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.stargate.support.xml \
+    vendor/google/yogi/proprietary/product/etc/permissions/com.google.android.apps.stargate.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.stargate.xml \
     vendor/google/yogi/proprietary/product/etc/permissions/com.google.android.dialer.support.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.dialer.support.xml \
     vendor/google/yogi/proprietary/product/etc/permissions/com.google.pixel.camera.connectivity.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.connectivity.impl.xml \
     vendor/google/yogi/proprietary/product/etc/permissions/com.google.pixel.camera.services.cameraidremapper.impl.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.pixel.camera.services.cameraidremapper.impl.xml \
@@ -726,6 +728,7 @@ PRODUCT_PACKAGES += \
     VZWAPNLib \
     CarrierSettings \
     EuiccGoogle \
+    SatelliteGateway-Phone \
     WfcActivation \
     CarrierSetup \
     EuiccGoogleOverlay \
