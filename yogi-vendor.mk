@@ -728,6 +728,7 @@ PRODUCT_PACKAGES += \
     VZWAPNLib \
     CarrierSettings \
     EuiccGoogle \
+    SCONE-v77459 \
     SatelliteGateway-Phone \
     WfcActivation \
     CarrierSetup \
